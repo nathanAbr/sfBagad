@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/perso.css') }}" />
+{% endblock %}
+{% block body %}
+{% block header %}
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li><a href="#">ACCUEIL</a></li>
+            <li><a href="#">EVENEMENTS</a></li>
+            <li><a href="#">PALMARES</a></li>
+            <li><a href="#">BAGADIG</a></li>
+            <li><a href="#">DEMANDE D'INFORMATION</a></li>
+            <li><a href="#">ESPACE MEMBRES</a></li>
+            <li><a type="button" data-toggle="modal" data-target=".bs-example-modal-lg">A NE PAS RATER</a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% block footer %}
+    <div class="container-fluid footer">
+        <p>Copyright</p>
+    </div>
+{% endblock %}
+{% endblock %}
