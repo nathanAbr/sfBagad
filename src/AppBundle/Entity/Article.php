@@ -42,6 +42,12 @@ class Article
      */
     private $dateCreation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="articles"})
+     * @ORM\JoinColumn(name="utlisateur_id", referencedColumnName="id")
+     */
+    private $auteur;
+
 
     /**
      * Get id

@@ -21,6 +21,19 @@ class Utilisateur
      */
     private $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="utilisateur")
+     */
+    private $articles;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Instrument", inversedBy="utilisateurs"})
+     * @ORM\JoinColumn(name="instrument_id", referencedColumnName="id")
+     */
+    private $instrument;
+    
+
+
 
     /**
      * Get id

@@ -28,6 +28,11 @@ class Instrument
      */
     private $libelle;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="instrument")
+     */
+    private $utlisateurs;
+
 
     /**
      * Get id
