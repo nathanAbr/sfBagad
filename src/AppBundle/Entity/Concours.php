@@ -94,4 +94,3 @@ class Concours extends Evenement
         return $this->description;
     }
 }
-

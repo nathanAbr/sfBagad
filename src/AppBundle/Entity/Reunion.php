@@ -63,4 +63,3 @@ class Reunion extends Evenement
         return $this->libelle;
     }
 }
-

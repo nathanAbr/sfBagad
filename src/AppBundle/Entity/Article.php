@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -43,7 +43,7 @@ class Article
     private $dateCreation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="articles"})
+     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="articles")
      * @ORM\JoinColumn(name="utlisateur_id", referencedColumnName="id")
      */
     private $auteur;
@@ -130,5 +130,28 @@ class Article
     {
         return $this->dateCreation;
     }
-}
 
+    /**
+     * Set auteur
+     *
+     * @param \AppBundle\Entity\Utilisateur $auteur
+     *
+     * @return Article
+     */
+    public function setAuteur(\AppBundle\Entity\Utilisateur $auteur = null)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return \AppBundle\Entity\Utilisateur
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+}

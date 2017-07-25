@@ -28,7 +28,10 @@ class Partition
      */
     private $titre;
 
-
+    /**
+     * @ORM\ManyToMany(targetEntity="Sortie", inversedBy="partitions")
+     */
+    private $sorties;
     /**
      * Get id
      *
@@ -62,5 +65,46 @@ class Partition
     {
         return $this->titre;
     }
-}
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sorties = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add sorty
+     *
+     * @param \AppBundle\Entity\Sortie $sorty
+     *
+     * @return Partition
+     */
+    public function addSorty(\AppBundle\Entity\Sortie $sorty)
+    {
+        $this->sorties[] = $sorty;
+
+        return $this;
+    }
+
+    /**
+     * Remove sorty
+     *
+     * @param \AppBundle\Entity\Sortie $sorty
+     */
+    public function removeSorty(\AppBundle\Entity\Sortie $sorty)
+    {
+        $this->sorties->removeElement($sorty);
+    }
+
+    /**
+     * Get sorties
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSorties()
+    {
+        return $this->sorties;
+    }
+}

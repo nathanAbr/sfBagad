@@ -32,4 +32,3 @@ class Cours extends Evenement
         return $this->id;
     }
 }
-

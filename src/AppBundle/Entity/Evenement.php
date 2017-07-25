@@ -134,4 +134,3 @@ class Evenement
         return $this->lieu;
     }
 }
-

@@ -48,7 +48,16 @@ class Sortie extends Evenement
      * @ORM\Column(name="tenue", type="boolean")
      */
     private $tenue;
+    /**
+    * @ORM\ManyToOne(targetEntity="Organisateur", inversedBy="sorties")
+    * @ORM\JoinColumn(name="organisateur_id", referencedColumnName="id")
+    */
+    private $organisateur;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Partition", mappedBy="sorties")
+     */
+    private $partitions;
 
     /**
      * Get id
@@ -155,5 +164,73 @@ class Sortie extends Evenement
     {
         return $this->tenue;
     }
-}
 
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->partitions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set organisateur
+     *
+     * @param \AppBundle\Entity\Organisateur $organisateur
+     *
+     * @return Sortie
+     */
+    public function setOrganisateur(\AppBundle\Entity\Organisateur $organisateur = null)
+    {
+        $this->organisateur = $organisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get organisateur
+     *
+     * @return \AppBundle\Entity\Organisateur
+     */
+    public function getOrganisateur()
+    {
+        return $this->organisateur;
+    }
+
+    /**
+     * Add partition
+     *
+     * @param \AppBundle\Entity\Partition $partition
+     *
+     * @return Sortie
+     */
+    public function addPartition(\AppBundle\Entity\Partition $partition)
+    {
+        $this->partitions[] = $partition;
+
+        return $this;
+    }
+
+    /**
+     * Remove partition
+     *
+     * @param \AppBundle\Entity\Partition $partition
+     */
+    public function removePartition(\AppBundle\Entity\Partition $partition)
+    {
+        $this->partitions->removeElement($partition);
+    }
+
+    /**
+     * Get partitions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPartitions()
+    {
+        return $this->partitions;
+    }
+}

@@ -56,6 +56,10 @@ class Organisateur
      */
     private $entite;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Sortie", mappedBy="organisateur")
+     */
+    private $sorties;
 
     /**
      * Get id
@@ -186,5 +190,46 @@ class Organisateur
     {
         return $this->entite;
     }
-}
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sorties = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add sorty
+     *
+     * @param \AppBundle\Entity\Sortie $sorty
+     *
+     * @return Organisateur
+     */
+    public function addSorty(\AppBundle\Entity\Sortie $sorty)
+    {
+        $this->sorties[] = $sorty;
+
+        return $this;
+    }
+
+    /**
+     * Remove sorty
+     *
+     * @param \AppBundle\Entity\Sortie $sorty
+     */
+    public function removeSorty(\AppBundle\Entity\Sortie $sorty)
+    {
+        $this->sorties->removeElement($sorty);
+    }
+
+    /**
+     * Get sorties
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSorties()
+    {
+        return $this->sorties;
+    }
+}

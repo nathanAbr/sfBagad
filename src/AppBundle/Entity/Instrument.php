@@ -67,5 +67,45 @@ class Instrument
     {
         return $this->libelle;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->utlisateurs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add utlisateur
+     *
+     * @param \AppBundle\Entity\Utilisateur $utlisateur
+     *
+     * @return Instrument
+     */
+    public function addUtlisateur(\AppBundle\Entity\Utilisateur $utlisateur)
+    {
+        $this->utlisateurs[] = $utlisateur;
+
+        return $this;
+    }
+
+    /**
+     * Remove utlisateur
+     *
+     * @param \AppBundle\Entity\Utilisateur $utlisateur
+     */
+    public function removeUtlisateur(\AppBundle\Entity\Utilisateur $utlisateur)
+    {
+        $this->utlisateurs->removeElement($utlisateur);
+    }
+
+    /**
+     * Get utlisateurs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUtlisateurs()
+    {
+        return $this->utlisateurs;
+    }
+}

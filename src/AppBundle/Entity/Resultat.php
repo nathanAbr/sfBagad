@@ -125,4 +125,3 @@ class Resultat
         return $this->media;
     }
 }
-
