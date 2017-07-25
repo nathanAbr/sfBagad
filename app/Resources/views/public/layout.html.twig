@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
-{% block stylesheet %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/perso.css') }}" />
-{% endblock %}
 {% block body %}
 {% block header %}
     <nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
-            <li><a href="#">ACCUEIL</a></li>
-            <li><a href="#">EVENEMENTS</a></li>
-            <li><a href="#">PALMARES</a></li>
-            <li><a href="#">BAGADIG</a></li>
-            <li><a href="#">DEMANDE D'INFORMATION</a></li>
-            <li><a href="#">ESPACE MEMBRES</a></li>
-            <li><a type="button" data-toggle="modal" data-target=".bs-example-modal-lg">A NE PAS RATER</a>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">ACCUEIL</a></li>
+                <li><a href="{{ path('evenements') }}">EVENEMENTS</a></li>
+                <li><a href="{{ path('palmares') }}">PALMARES</a></li>
+                <li><a href="{{ path('bagadig') }}">BAGADIG</a></li>
+                <li><a href="/">DEMANDE D'INFORMATION</a></li>
+
+                <li><a type="button" data-toggle="modal" data-target=".bs-example-modal-lg">A NE PAS RATER</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" class="link-nav-right">ESPACE MEMBRES</a></li>
+            </ul>
+        </div>
     </nav>
 {% endblock %}
     <div class="container-fluid">
