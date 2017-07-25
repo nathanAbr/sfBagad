@@ -374,28 +374,4 @@ class Evenement
     {
         return $this->partitions;
     }
-
-    /**
-     * Set visibilite
-     *
-     * @param boolean $visibilite
-     *
-     * @return Evenement
-     */
-    public function setVisibilite($visibilite)
-    {
-        $this->visibilite = $visibilite;
-
-        return $this;
-    }
-
-    /**
-     * Get visibilite
-     *
-     * @return boolean
-     */
-    public function getVisibilite()
-    {
-        return $this->visibilite;
-    }
 }

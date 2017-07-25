@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Resultat
+ * Concours
  *
- * @ORM\Table(name="resultat")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ResultatRepository")
+ * @ORM\Table(name="concours")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ConcoursRepository")
  */
-class Resultat
+class Concours extends Evenement
 {
     /**
      * @var int
@@ -36,16 +36,10 @@ class Resultat
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="media", type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="Resultat", inversedBy="concours")
      */
-    private $media;
+    private $resultat;
 
-    /**
-     * @ORM\OneToOne(targetEntity="Concours", inversedBy="resultat")
-     */
-    private $concours;
 
     /**
      * Get id
@@ -62,7 +56,7 @@ class Resultat
      *
      * @param string $titre
      *
-     * @return Resultat
+     * @return Concours
      */
     public function setTitre($titre)
     {
@@ -86,7 +80,7 @@ class Resultat
      *
      * @param string $description
      *
-     * @return Resultat
+     * @return Concours
      */
     public function setDescription($description)
     {
@@ -106,50 +100,26 @@ class Resultat
     }
 
     /**
-     * Set media
+     * Set resultat
      *
-     * @param string $media
+     * @param \AppBundle\Entity\Resultat $resultat
      *
-     * @return Resultat
+     * @return Concours
      */
-    public function setMedia($media)
+    public function setResultat(\AppBundle\Entity\Resultat $resultat = null)
     {
-        $this->media = $media;
+        $this->resultat = $resultat;
 
         return $this;
     }
 
     /**
-     * Get media
+     * Get resultat
      *
-     * @return string
+     * @return \AppBundle\Entity\Resultat
      */
-    public function getMedia()
+    public function getResultat()
     {
-        return $this->media;
-    }
-
-    /**
-     * Set concours
-     *
-     * @param \AppBundle\Entity\Concours $concours
-     *
-     * @return Resultat
-     */
-    public function setConcours(\AppBundle\Entity\Concours $concours = null)
-    {
-        $this->concours = $concours;
-
-        return $this;
-    }
-
-    /**
-     * Get concours
-     *
-     * @return \AppBundle\Entity\Concours
-     */
-    public function getConcours()
-    {
-        return $this->concours;
+        return $this->resultat;
     }
 }

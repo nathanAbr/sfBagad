@@ -163,28 +163,4 @@ class Article
     {
         return $this->auteur;
     }
-
-    /**
-     * Set visibilite
-     *
-     * @param boolean $visibilite
-     *
-     * @return Article
-     */
-    public function setVisibilite($visibilite)
-    {
-        $this->visibilite = $visibilite;
-
-        return $this;
-    }
-
-    /**
-     * Get visibilite
-     *
-     * @return boolean
-     */
-    public function getVisibilite()
-    {
-        return $this->visibilite;
-    }
 }

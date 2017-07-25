@@ -35,6 +35,11 @@ class Concours extends Evenement
      */
     private $description;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Resultat", mappedBy="concours")
+     */
+    private $resultat;
+
 
     /**
      * Get id
@@ -93,5 +98,28 @@ class Concours extends Evenement
     {
         return $this->description;
     }
-}
 
+    /**
+     * Set resultat
+     *
+     * @param \AppBundle\Entity\Resultat $resultat
+     *
+     * @return Concours
+     */
+    public function setResultat(\AppBundle\Entity\Resultat $resultat = null)
+    {
+        $this->resultat = $resultat;
+
+        return $this;
+    }
+
+    /**
+     * Get resultat
+     *
+     * @return \AppBundle\Entity\Resultat
+     */
+    public function getResultat()
+    {
+        return $this->resultat;
+    }
+}
