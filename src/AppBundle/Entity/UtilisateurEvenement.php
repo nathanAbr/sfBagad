@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Utilisateur_evenement
+ * UtilisateurEvenement
  *
  * @ORM\Table(name="utilisateur_evenement")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Utilisateur_evenementRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurEvenementRepository")
  */
-class Utilisateur_evenement
+class UtilisateurEvenement
 {
     /**
      * @var int
@@ -28,6 +28,20 @@ class Utilisateur_evenement
      */
     private $present;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Evenement", inversedBy="participants")
+     */
+    private $participant;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Evenement", mappedBy="evenement")
+     */
+    private $evenements;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="utilisateurEvenement")
+     */
+    private $utilisateurs;
 
     /**
      * Get id

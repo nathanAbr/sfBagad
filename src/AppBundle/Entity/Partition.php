@@ -28,6 +28,10 @@ class Partition
      */
     private $titre;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Session", inversedBy="partitions")
+     */
+    private $sessionPartitions;
 
     /**
      * Get id

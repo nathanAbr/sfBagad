@@ -31,7 +31,12 @@ class Instrument
     /**
      * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="instrument")
      */
-    private $utlisateurs;
+    private $utilisateurs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Session", mappedBy="instrument")
+     */
+    private $sessions;
 
 
     /**

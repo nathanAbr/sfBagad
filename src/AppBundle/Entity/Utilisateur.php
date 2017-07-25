@@ -1,13 +1,13 @@
 <?php
 
-namespace AppBundle\Entity\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Utilisateur
  *
- * @ORM\Table(name="entity_utilisateur")
+ * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Entity\UtilisateurRepository")
  */
 class Utilisateur
@@ -22,16 +22,26 @@ class Utilisateur
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Article", mappedBy="utilisateur")
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="auteur")
      */
     private $articles;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Instrument", inversedBy="utilisateurs"})
+     * @ORM\ManyToOne(targetEntity="Instrument", inversedBy="utilisateurs")
      * @ORM\JoinColumn(name="instrument_id", referencedColumnName="id")
      */
     private $instrument;
-    
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Session", mappedBy="professeur")
+     */
+    private $professeurs;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UtilisateurEvenement", inversedBy="utilisateurs")
+     */
+    private $utilisateurEvenement;
 
 
 

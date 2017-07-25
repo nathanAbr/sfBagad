@@ -1,13 +1,13 @@
 <?php
 
-namespace AppBundle\Entity\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Article
  *
- * @ORM\Table(name="entity_article")
+ * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Entity\ArticleRepository")
  */
 class Article
@@ -43,7 +43,7 @@ class Article
     private $dateCreation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="articles"})
+     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="articles")
      * @ORM\JoinColumn(name="utlisateur_id", referencedColumnName="id")
      */
     private $auteur;

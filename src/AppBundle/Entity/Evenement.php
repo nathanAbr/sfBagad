@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     "concours" = "Concours",
  *     "sortie" = "Sortie",
  *     "reunion" = "Reunion",
- *     "cours" = "Cours"
+ *     "session" = "Session"
  *     })
  */
 class Evenement
@@ -47,10 +47,47 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="lieu", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255)
      */
-    private $lieu;
+    private $ville;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cp", type="string", length=255)
+     */
+    private $cp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="UtilisateurEvenement", mappedBy="participant")
+     */
+    private $participants;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="UtilisateurEvenement", inversedBy="evenements")
+     */
+    private $evenement;
 
     /**
      * Get id
