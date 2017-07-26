@@ -2,16 +2,17 @@
 
 {% block content %}
 
-    <!--{# for palmares in listPalmares #}-->
+    <!--{# for repettion in listRepetitions #}-->
     <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </button>
 
-    {# {% for concours in listeConcours %} #}
+
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="input-group" >
-                <h3>Concours d'été</h3>
+                <h3>Caisse-claire/Percussion</h3>
 
                 <div class="input-group-btn" style="padding-right: 250px">
 
@@ -33,7 +34,7 @@
                     <th>Date</th>
                     <th>Heure</th>
                     <th>Lieu</th>
-                    <th>Programme musical</th>
+                    <th>Sujet</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,14 +42,12 @@
                     <td>20 aout 2017</td>
                     <td>10h30</td>
                     <td>Quimperlé</td>
-                    <td>partition1, partition2, etc...</td>
+                    <td>Programme musical</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    {#{% endfor %} #}
-
     <!-- {# endfor #} -->
 
 {% endblock %}

@@ -2,42 +2,23 @@
 
 {% block content %}
 
-    <!--{# for palmares in listPalmares #}-->
+    <!--{# for sortie in listSorties #}-->
     <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </button>
 
-
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">HellFest</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"> Enregistrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="input-group" >
-                <h3>Sortie 1</h3>
+                <h3>HellFest</h3>
 
-                <div class="input-group-btn" style="padding-right: 350px">
+                <div class="input-group-btn" style="padding-right: 250px">
 
                     <button type="button" class="btn btn-default">Supprimer</button>
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Modifier</button>
                 </div>
             <div class="input-group-btn">
-                <button type="button" class="btn btn-default">S'inscrire</button>
+
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Détail de la sortie</button>
 
             </div>
@@ -45,13 +26,25 @@
         </div>
 
         <div class="panel-body">
-            <ul class="list-inline">
-                <li> <strong>Date</strong></li>
-                <li><strong>Heure de rdv</strong></li>
-                <li><strong>Lieu de rdv</strong></li>
-                <li><strong>Heure de retour</strong></li>
-                <li></li>
-            </ul>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Heure de rdv</th>
+                    <th>Lieu de rdv</th>
+                    <th>Heure de retour</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>20 aout 2017</td>
+                    <td>10h30</td>
+                    <td>Quimperlé</td>
+                    <td>16h00</td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
     <!-- {# endfor #} -->

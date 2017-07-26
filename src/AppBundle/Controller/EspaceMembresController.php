@@ -26,7 +26,7 @@ class EspaceMembresController extends Controller
 
 
     /**
-     * @Route("/sorties/", name="sorties")
+     * @Route("/sortie/", name="em_sortie")
      */
     public function sortiesAction(Request $request)
     {
@@ -34,7 +34,7 @@ class EspaceMembresController extends Controller
     }
 
     /**
-     * @Route("/concours/", name="concours")
+     * @Route("/concours/", name="em_concours")
      */
     public function concoursAction(Request $request)
     {
@@ -42,15 +42,15 @@ class EspaceMembresController extends Controller
     }
 
     /**
-     * @Route("/cours/", name="cours")
+     * @Route("/repetition/", name="em_repetition")
      */
-    public function coursAction(Request $request)
+    public function repetitionsAction(Request $request)
     {
-        return $this->render('espaceMembres/cours.html.twig');
+        return $this->render('espaceMembres/repetitions.html.twig');
     }
 
     /**
-     * @Route("/reunions/", name="reunions")
+     * @Route("/reunion/", name="em_reunion")
      */
     public function reunionsAction(Request $request)
     {
@@ -58,11 +58,27 @@ class EspaceMembresController extends Controller
     }
 
     /**
-     * @Route("/listeMembres/", name="listeMembres")
+     * @Route("/listeMembres/", name="em_listeMembres")
      */
     public function listeMembresAction(Request $request)
     {
         return $this->render('espaceMembres/listeMembres.html.twig');
+    }
+
+    /**
+     * @Route("/profil/", name="em_profil")
+     */
+    public function profilAction(Request $request)
+    {
+        return $this->render('espaceMembres/profil.html.twig');
+    }
+
+    /**
+     * @Route("/messagerie/", name="em_messagerie")
+     */
+    public function messagerieAction(Request $request)
+    {
+        return $this->render('espaceMembres/messagerie.html.twig');
     }
 
 }
