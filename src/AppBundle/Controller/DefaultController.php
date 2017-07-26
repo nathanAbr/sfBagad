@@ -52,4 +52,11 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('public/bagadig.html.twig');
     }
+
+    /**
+     *@Route("/contact", name="contact")
+     */
+    public function  contactAction(){
+        return $this->render('public/formulaireContact.html.twig');
+    }
 }
