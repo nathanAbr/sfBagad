@@ -20,7 +20,23 @@
                 nowIndicator:true,
                 locale: 'fr',
                 columnFormat: 'dddd',
-                events: '/dataEvent'
+                events: function(start, end, timezone, callback){
+                    $.ajax({
+                        url:'/dataEvent',
+                        dataType: 'json',
+                        success: function(data){
+                            var events = [];
+                            $(data.Reunions).each(function(){
+                                events.push({
+                                    title: $(this).attr('titre'),
+                                    start: $(this).attr('dateDebut').date,
+                                    end: $(this).attr('dateFin').date
+                                });
+                            });
+                            callback(events);
+                        }
+                    });
+                }
             })
 
         });

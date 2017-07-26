@@ -17,7 +17,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class PublicController extends Controller
 {
@@ -75,6 +74,7 @@ class PublicController extends Controller
      * @Route("/dataEvent", name="bagadig")
      */
     public function eventDataAction(EntityManagerInterface $entityManager){
+
         $reunions = $entityManager->getRepository(Reunion::class)->findByCurrentMonth();
         $sorties = $entityManager->getRepository(Sortie::class)->findByCurrentMonth();
         $concours = $entityManager->getRepository(Concours::class)->findByCurrentMonth();
