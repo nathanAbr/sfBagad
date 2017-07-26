@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class ReunionRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByCurrentMonth(){
+        $nbJour = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+        $query = $this->getEntityManager()->createQuery('SELECT r FROM AppBundle:Reunion r');
+        //$query->setParameter('date_debut', date('Y-m-01'));
+        //$query->setParameter('date_fin', date('Y-m-'.$nbJour));
+        try {
+            dump($query->getArrayResult());
+            return $query->getArrayResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return $e->getMessage();
+        }
+    }
 }

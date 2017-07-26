@@ -1,17 +1,29 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Nathan
+ * Date: 26/07/2017
+ * Time: 13:34
+ */
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Concours;
+use AppBundle\Entity\Reunion;
+use AppBundle\Entity\Session;
+use AppBundle\Entity\Sortie;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-class DefaultController extends Controller
+class PublicController extends Controller
 {
     /**
      * @Route("/", name="homepage")
-
+     */
     public function indexAction(Request $request)
     {
         $listeEvenement[] = ['date_debut'=>date('Y-m-d h:i:s', strtotime('2017-01-05 09:00:00')),'date_fin'=>date('Y-m-d h:i:s', strtotime('2017-01-05 18:00:00')), 'lieu'=>'45 rue desz colombes', 'cp'=>'44 596', 'ville'=>'Nantes', 'titre'=>'Touch my tralala', 'description'=>'Do you want to touch my ball board with a cuire moustache jocket'];
@@ -26,17 +38,16 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/evenements", name="evenements")
-
+     * @Route("/evenement", name="evenements")
+     */
     public function evenementsAction(Request $request)
     {
-        // replace this example code with whatever you need
         return $this->render('public/evenements.html.twig');
     }
 
     /**
      * @Route("/palmares", name="palmares")
-
+     */
     public function palmaresAction(Request $request)
     {
         // replace this example code with whatever you need
@@ -44,7 +55,7 @@ class DefaultController extends Controller
     }
     /**
      * @Route("/login", name="login")
-
+     */
     public function loginFormAction(Request $request)
     {
         // replace this example code with whatever you need
@@ -53,10 +64,31 @@ class DefaultController extends Controller
 
     /**
      * @Route("/bagadig", name="bagadig")
-
+     */
     public function bagadigAction(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('public/bagadig.html.twig');
-    }*/
+    }
+
+    /**
+     * @Route("/dataEvent", name="bagadig")
+     */
+    public function eventDataAction(EntityManagerInterface $entityManager){
+        $reunions = $entityManager->getRepository(Reunion::class)->findByCurrentMonth();
+        $sorties = $entityManager->getRepository(Sortie::class)->findByCurrentMonth();
+        $concours = $entityManager->getRepository(Concours::class)->findByCurrentMonth();
+        $sessions = $entityManager->getRepository(Session::class)->findByCurrentMonth();
+
+        dump($reunions);
+
+        $evenements["Reunions"] = $reunions;
+        $evenements["Sorties"] = $sorties;
+        $evenements["Concours"] = $concours;
+        $evenements["Sessions"] = $sessions;
+
+        $evenements = json_encode($evenements);
+
+        return new Response($evenements);
+    }
 }
