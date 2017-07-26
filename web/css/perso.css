@@ -113,3 +113,9 @@ body {
 .carousel{
     position: relative;
 }
+
+.calendarDay{
+    height: 10em;
+    background-color: #dadada;
+    border: 1px solid #6c6159;
+}

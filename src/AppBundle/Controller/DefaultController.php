@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class DefaultController extends Controller
 {
@@ -19,6 +20,7 @@ class DefaultController extends Controller
 
         return $this->render('public/accueil.html.twig', array('listeEvenements'=>$listeEvenement));
     }
+
     /**
      * @Route("/evenements", name="evenements")
      */
@@ -27,6 +29,7 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('public/evenements.html.twig');
     }
+
     /**
      * @Route("/palmares", name="palmares")
      */
