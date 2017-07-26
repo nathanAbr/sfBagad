@@ -2,9 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Contact;
+use AppBundle\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class DefaultController extends Controller
 {
@@ -56,7 +61,18 @@ class DefaultController extends Controller
     /**
      *@Route("/contact", name="contact")
      */
-    public function  contactAction(){
-        return $this->render('public/formulaireContact.html.twig');
+    public function  contactAction(Request $request, EntityManagerInterface $em){
+        $contact = new  Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->add('save', SubmitType::class, array('label' => 'Envoyer'));
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $contact = $form->getData();
+            $em->persist($contact);
+            $em->flush();
+        }
+        return $this->render('public/formulaireContact.html.twig',array(
+            'form'=> $form->createView(),
+        ));
     }
 }
