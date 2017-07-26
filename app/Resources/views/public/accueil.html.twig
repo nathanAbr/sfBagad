@@ -30,27 +30,56 @@
 
 
 <div class="container marketing">
-    <div class="jumbotron">
-        <h1>Evenement important</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">En savoir plus</a></p>
-    </div>
 
-    <!-- Three columns of text below the carousel -->
     <div class="row text-center">
         {% for evenement in listeEvenements %}
-        <div class="col-lg-4">
-            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>{{ evenement.titre }}</h2>
-            <h3>Du {{ evenement.date_debut }} au {{ evenement.date_fin }}</h3>
-            <p>{{ evenement.description }}</p>
-            <p>{{ evenement.lieu }}</p>
-            <p>{{ evenement.cp }}</p>
-            <p>{{ evenement.ville }}</p>
-            <p><a class="btn btn-default" href="#" role="button">Voir plus</a></p>
-        </div>
+            <div class="col-lg-4">
+                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <h2>{{ evenement.titre }}</h2>
+                <h3>Du {{ evenement.date_debut }} au {{ evenement.date_fin }}</h3>
+                <p>{{ evenement.description }}</p>
+                <p>{{ evenement.lieu }}</p>
+                <p>{{ evenement.cp }}</p>
+                <p>{{ evenement.ville }}</p>
+                <p><a class="btn btn-default" href="#" role="button">Voir plus</a></p>
+            </div>
         {% endfor %}
-    </div><!-- /.row -->
+        {% for evenement2 in listeEvenement2 %}
+            <div class="col-lg-4">
+                {% if not evenement2.Repetition is defined and not evenement2.Cours is defined %}
+                    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    <h2>{{ evenement2.titre }}</h2>
+                    <h3>Du {{ evenement2.date_debut }} au {{ evenement2.date_fin }}</h3>
+                    <p>{{ evenement2.description }}</p>
+                    <p>{{ evenement2.lieu }}</p>
+                    <p>{{ evenement2.cp }}</p>
+                    <p>{{ evenement2.ville }}</p>
+                    <p><a class="btn btn-default" href="#" role="button">Voir plus</a></p>
+                {% else %}
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h2>Répétition</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>Du {{ evenement2.Repetition.date_debut }} au {{ evenement2.Repetition.date_fin }}</p>
+                            <p>{{ evenement2.Repetition.instrument }}</p>
+                            <p><a class="btn btn-default" href="#" role="button">Voir plus</a></p>
+                        </div>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h2>Cours</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>Du {{ evenement2.Cours.date_debut }} au {{ evenement2.Cours.date_fin }}</p>
+                            <p>{{ evenement2.Cours.instrument }}</p>
+                            <p><a class="btn btn-default" href="#" role="button">Voir plus</a></p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
 
 
     <div class="panel panel-info">
@@ -59,9 +88,7 @@
         </div>
         <div class="panel-body">
             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
         </div>
-
     </div>
 </div>
 
