@@ -12,14 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Concours extends Evenement
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+
 
     /**
      * @var string
@@ -39,17 +32,6 @@ class Concours extends Evenement
      * @ORM\OneToOne(targetEntity="Resultat", mappedBy="concours")
      */
     private $resultat;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set titre
