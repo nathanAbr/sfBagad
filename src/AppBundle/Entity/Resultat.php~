@@ -43,7 +43,7 @@ class Resultat
     private $media;
 
     /**
-     * @ORM\OneToOne(targetEntity="Concours", mappedBy="resultat")
+     * @ORM\OneToOne(targetEntity="Concours", inversedBy="resultat")
      */
     private $concours;
 

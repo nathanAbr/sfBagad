@@ -64,13 +64,21 @@ class DefaultController extends Controller
     public function  contactAction(Request $request, EntityManagerInterface $em){
         $contact = new  Contact();
         $form = $this->createForm(ContactType::class, $contact);
-        $form->add('save', SubmitType::class, array('label' => 'Envoyer'));
+        $form->add('save', SubmitType::class, array(
+            'label' => 'Envoyer',
+            'attr'  => array('class' => 'btn btn-default pull-right')));
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $contact = $form->getData();
             $em->persist($contact);
             $em->flush();
+
+            $this->container->get('session')->getFlashBag()->add('success', 'Votre message a bien été enregistré.');
+            $this->container->get('session')->getFlashBag()->add('danger', 'Votre message n\'a pu être envoyé.');
+
+            return $this->redirect($this->generateUrl('contact'));
         }
+
         return $this->render('public/formulaireContact.html.twig',array(
             'form'=> $form->createView(),
         ));

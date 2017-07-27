@@ -1,7 +1,27 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{# {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %} #}
 {% extends 'public/layout.html.twig' %}
 
+
 {% block content %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div style="width:80%; margin: 0 auto;">
+        <h3>Demande d'informations</h3>
+        {{ form_start(form) }}
+        {{ form_row(form.Nom) }}
+        {{ form_row(form.Prenom) }}
+        {{ form_row(form.Mail) }}
+        {{ form_row(form.Sujet) }}
+        {{ form_row(form.Message, { 'attr': {'style': 'min-height:200px'} }) }}
+
+
+        {{ form_end(form) }}
+
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.session.flashbag.get('error') %}
+            <div class="alert alert-error">{{ message }}</div>
+        {% endfor %}
+    </div>
 {% endblock %}
