@@ -36,7 +36,7 @@ class Concours extends Evenement
     private $description;
 
     /**
-     * @ORM\OneToOne(targetEntity="Resultat", inversedBy="concours")
+     * @ORM\OneToOne(targetEntity="Resultat", mappedBy="concours")
      */
     private $resultat;
 
