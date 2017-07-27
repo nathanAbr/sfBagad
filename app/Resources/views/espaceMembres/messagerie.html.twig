@@ -1,0 +1,52 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {# {% for message in listeMessages %} #}
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <span><Strong>De: </Strong> Erwan Raulo  </span> <span class="pull-right"><Strong >Le: </Strong> 25/07/2017</span>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <table class="table  text-center">
+                        <tbody>
+                        <tr>
+                        </tr>
+                        <tr>
+                            <th class="text-center info" >Objet:</th>
+                            <td class="info">inscription 2018</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Message:</th>
+                            <td rowspan = "2"> Per qui cum aereis recteque figmentis his aestimantes sensu de quam quam
+                                consiliis tendere et quam armisque honeste superasset malo verae inquit  </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-default"><a href="mailto:info@support.com">Répondre</button>
+                    <button  type="button" class="btn btn-default"><a href=" {{ path('em_messagerie_sup') }}"></a>Supprimer</button>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    {#{% endfor %} #}
+
+
+
+</div>
+
+{% endblock %}

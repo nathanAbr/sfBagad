@@ -8,13 +8,13 @@
                 <li><a href="{{ path('evenements') }}">EVENEMENTS</a></li>
                 <li><a href="{{ path('palmares') }}">PALMARES</a></li>
                 <li><a href="{{ path('bagadig') }}">BAGADIG</a></li>
-                <li><a href="/">DEMANDE D'INFORMATION</a></li>
+                <li><a href="{{ path('contact') }}">DEMANDE D'INFORMATION</a></li>
 
                 <li><a type="button" data-toggle="modal" data-target=".bs-example-modal-lg">A NE PAS RATER</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" class="link-nav-right">ESPACE MEMBRES</a></li>
+                <li><a href="{{ path('espace_membre') }}" class="link-nav-right">ESPACE MEMBRES</a></li>
             </ul>
         </div>
     </nav>
@@ -55,9 +55,9 @@
             </div>
         </div>
     </div>
-{% block footer %}
-    <div class="container-fluid footer">
-        <p>Copyright</p>
-    </div>
-{% endblock %}
+    {% block footer %}
+        <div class="container-fluid footer">
+            <p>Copyright</p>
+        </div>
+    {% endblock %}
 {% endblock %}
