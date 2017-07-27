@@ -26,17 +26,19 @@ class PublicController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, EntityManagerInterface $entityManager)
     {
-        $listeEvenement[] = ['date_debut'=>date('Y-m-d h:i:s', strtotime('2017-01-05 09:00:00')),'date_fin'=>date('Y-m-d h:i:s', strtotime('2017-01-05 18:00:00')), 'lieu'=>'45 rue desz colombes', 'cp'=>'44 596', 'ville'=>'Nantes', 'titre'=>'Touch my tralala', 'description'=>'Do you want to touch my ball board with a cuire moustache jocket'];
-        $listeEvenement[] = ['date_debut'=>date('Y-m-d h:i:s', strtotime('2017-01-05 09:00:00')),'date_fin'=>date('Y-m-d h:i:s', strtotime('2017-01-05 18:00:00')), 'lieu'=>'45 rue desz colombes', 'cp'=>'44 596', 'ville'=>'Nantes', 'titre'=>'Touch my tralala', 'description'=>'Do you want to touch my bool board with a cuire moustache jocket'];
-        $listeEvenement[] = ['date_debut'=>date('Y-m-d h:i:s', strtotime('2017-01-05 09:00:00')),'date_fin'=>date('Y-m-d h:i:s', strtotime('2017-01-05 18:00:00')), 'lieu'=>'45 rue desz colombes', 'cp'=>'44 596', 'ville'=>'Nantes', 'titre'=>'Touch my tralala', 'description'=>'Do you want to touch my bool board with a cuire moustache jocket'];
+        $evenementsImp = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true, 'important'=>true), null, 3);
+        $evenementsVis = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true), array('dateAjout'=>'DESC'), 2);
+        $sessionRepetition = $entityManager->getRepository(Session::class)->findByTypeAndAjout('Repetion');
+        $sessionCours = $entityManager->getRepository(Session::class)->findByTypeAndAjout('Cours');
 
-        $listeEvenement2[] = ['date_debut'=>date('Y-m-d h:i:s', strtotime('2017-01-05 09:00:00')),'date_fin'=>date('Y-m-d h:i:s', strtotime('2017-01-05 18:00:00')), 'lieu'=>'45 rue desz colombes', 'cp'=>'44 596', 'ville'=>'Nantes', 'titre'=>'Touch my tralala lilili', 'description'=>'Do you want to touch my ball board with a cuire moustache jocket'];
-        $listeEvenement2[] = ['date_debut'=>date('Y-m-d h:i:s', strtotime('2017-01-05 09:00:00')),'date_fin'=>date('Y-m-d h:i:s', strtotime('2017-01-05 18:00:00')), 'lieu'=>'45 rue desz colombes', 'cp'=>'44 596', 'ville'=>'Nantes', 'titre'=>'Touch my tralala', 'description'=>'Do you want to touch my bool board with a cuire moustache jocket'];
-        $listeEvenement2[] = ['Repetition'=>['date_debut'=>date('Y-m-d h:i:s', strtotime('2017-01-05 09:00:00')),'date_fin'=>date('Y-m-d h:i:s', strtotime('2017-01-05 18:00:00')), 'lieu'=>'45 rue desz colombes', 'cp'=>'44 596', 'ville'=>'Nantes', 'titre'=>'Touch my tralala', 'description'=>'Do you want to touch my ball board with a cuire moustache jocket', 'instrument'=>'Caisse'], 'Cours'=>['date_debut'=>date('Y-m-d h:i:s', strtotime('2017-01-05 09:00:00')),'date_fin'=>date('Y-m-d h:i:s', strtotime('2017-01-05 18:00:00')), 'lieu'=>'45 rue desz colombes', 'cp'=>'44 596', 'ville'=>'Nantes', 'titre'=>'Touch my tralala', 'description'=>'Do you want to touch my ball board with a cuire moustache jocket', 'instrument'=>'caisse']];
+        $evenementsVis['Repetition'] = $sessionRepetition;
+        $evenementsVis['Cours'] = $sessionCours;
 
-        return $this->render('public/accueil.html.twig', array('listeEvenements'=>$listeEvenement, 'listeEvenement2'=>$listeEvenement2));
+        dump($evenementsVis);
+
+        return $this->render('public/accueil.html.twig', array('evenementsImportants'=>$evenementsImp, 'evenementsAutres'=>$evenementsVis));
     }
 
     /**
@@ -87,9 +89,6 @@ class PublicController extends Controller
         $sessions = $entityManager->getRepository(Session::class)->findByCurrentMonth($start, $end);
 
         $evenements = [];
-
-        $fs = new Filesystem();
-        $fs->dumpFile('file.txt', json_encode($reunions));
 
         foreach($reunions as $reunion){
             $evenement = new \stdClass();

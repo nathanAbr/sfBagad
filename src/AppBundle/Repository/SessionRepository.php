@@ -21,4 +21,14 @@ class SessionRepository extends \Doctrine\ORM\EntityRepository
             return null;
         }
     }
+
+    public function findByTypeAndAjout($type){
+        $query = $this->getEntityManager()->createQuery('SELECT s FROM AppBundle:Session s WHERE s.type = :type');
+        $query->setParameter('type', $type);
+        try {
+            return $query->getSingleResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }
