@@ -103,14 +103,7 @@ class Utilisateur extends BaseUser
     {
         return $this->id;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
+    
     /**
      * Add article
      *

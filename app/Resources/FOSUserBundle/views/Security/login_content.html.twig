@@ -3,8 +3,11 @@
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-
-<form action="{{ path("fos_user_security_check") }}" method="post" class="form">
+<h1>Login</h1>
+<div class="login-img">
+    <img class="login-logo" src="http://i2.wp.com/www.laita-prod.com/wp-content/uploads/2015/10/bagad03.jpg?resize=333%2C200" alt="Bagad Logo"/>
+</div>
+<form action="{{ path("fos_user_security_check") }}" method="post" class="login-form">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}

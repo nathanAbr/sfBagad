@@ -12,6 +12,7 @@ use AppBundle\Entity\Utilisateur;
 use FOS\UserBundle\Model\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -25,19 +26,29 @@ class RegistrationType extends AbstractType
         $builder
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('date_naissance', DateType::class)
+            ->add('date_naissance', DateType::class, array(
+                'widget' => 'single_text'
+            ))
             ->add('adresse', TextType::class)
             ->add('cp', TextType::class)
             ->add('ville', TextType::class)
             ->add('cotisation', CheckboxType::class, array(
-                'label' => 'Cotisation payée ?',
+                'label' => 'Cotisation payée (cochez si oui)',
                 'required' => false,
             ))
             ->add('instrument', EntityType::class, array(
                 'class' => 'AppBundle:Instrument',
                 'choice_label' => 'libelle',
+            ))
+            ->add('roles', CollectionType::class, array(
+                'entry_type'   => ChoiceType::class,
+                'entry_options'  => array(
+                    'choices'  => array(
+                        'Admin' => 'ROLE_ADMIN',
+                        'User' => 'ROLE_MEMBRE',
+                    ),
+                ),
             ));
-
     }
 
     public function getParent()
