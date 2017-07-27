@@ -62,13 +62,13 @@
                     <h4 class="modal-title" id="myModalLabel">Ajouter un concours</h4>
                 </div>
                 <div class="modal-body">
-                    {{ form_start(form, {'id': 'formconcours'}) }}
+                    {{ form_start(form, {'attr': {'id': 'formconcours'}}) }}
                     {{ form_widget(form)}}
                     {{ form_end(form) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_concours_add') }}"></a> Enregistrer</button>
+                    <button type="submit" class="btn btn-primary" form="formconcours"><a href=" {{ path('em_concours_add') }}"></a> Enregistrer</button>
                 </div>
             </div>
         </div>
