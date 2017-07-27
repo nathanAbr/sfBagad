@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Evenement;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Concours;
 use AppBundle\Entity\Reunion;
@@ -77,54 +78,61 @@ class PublicController extends Controller
      */
     public function eventDataAction(EntityManagerInterface $entityManager){
 
-        $start = $_POST['start'];
-        $end = $_POST['end'];
+        $start = $_GET['start'];
+        $end = $_GET['end'];
 
         $reunions = $entityManager->getRepository(Reunion::class)->findByCurrentMonth($start, $end);
         $sorties = $entityManager->getRepository(Sortie::class)->findByCurrentMonth($start, $end);
         $concours = $entityManager->getRepository(Concours::class)->findByCurrentMonth($start, $end);
         $sessions = $entityManager->getRepository(Session::class)->findByCurrentMonth($start, $end);
 
-        dump($reunions);
-
         $evenements = [];
+
+        $fs = new Filesystem();
+        $fs->dumpFile('file.txt', json_encode($reunions));
         $evenement = new \stdClass();
+        $i = 0;
 
         foreach($reunions as $reunion){
-            $evenement->start = $reunion['dateDebut']->date;
-            $evenement->end = $reunion['dateFin']->date;
+            $evenement->start = $reunion['dateDebut']->format('Y-m-d H:i:s');
+            $evenement->end = $reunion['dateFin']->format('Y-m-d H:i:s');
             $evenement->id = $reunion['id'];
             $evenement->url = '/evenement/'.$reunion['id'];
             $evenement->backgroundColor = 'blue';
-            $evenements[] = $evenement;
+            $evenements[$i] = $evenement;
+            $i++;
         }
 
         foreach($sorties as $sortie){
-            $evenement->start = $sortie['dateDebut']->date;
-            $evenement->end = $sortie['dateFin']->date;
+            $evenement->start = $sortie['dateDebut']->format('Y-m-d H:i:s');
+            $evenement->end = $sortie['dateFin']->format('Y-m-d H:i:s');
             $evenement->id = $sortie['id'];
             $evenement->url = '/evenement/'.$sortie['id'];
             $evenement->backgroundColor = 'red';
-            $evenements[] = $evenement;
+            $evenements[$i] = $evenement;
+            $i++;
         }
 
         foreach($concours as $concour){
-            $evenement->start = $concour['dateDebut']->date;
-            $evenement->end = $concour['dateFin']->date;
+            $evenement->start = $concour['dateDebut']->format('Y-m-d H:i:s');
+            $evenement->end = $concour['dateFin']->format('Y-m-d H:i:s');
             $evenement->id = $concour['id'];
             $evenement->url = '/evenement/'.$concour['id'];
             $evenement->backgroundColor = 'green';
-            $evenements[] = $evenement;
+            $evenements[$i] = $evenement;
+            $i++;
         }
 
         foreach($sessions as $session){
-            $evenement->start = $session['dateDebut']->date;
-            $evenement->end = $session['dateFin']->date;
+            $evenement->start = $session['dateDebut']->format('Y-m-d H:i:s');
+            $evenement->end = $session['dateFin']->format('Y-m-d H:i:s');
             $evenement->id = $session['id'];
             $evenement->url = '/evenement/'.$session['id'];
             $evenement->backgroundColor = 'yellow';
-            $evenements[] = $evenement;
+            $evenements[$i] = $evenement;
+            $i++;
         }
+
         return new Response(json_encode($evenements));
     }
 
