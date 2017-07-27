@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class EspaceMembresController extends Controller
 {
     /**
-     * @Route("/membre/acceuil/", name="em_acceuil")
+     * @Route("/membre/acceuil/", name="em_accueil")
      */
     public function indexAction(Request $request)
     {

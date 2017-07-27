@@ -10,15 +10,18 @@ namespace AppBundle\Repository;
  */
 class ConcoursRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByCurrentMonth(){
-        $nbJour = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+    public function findByCurrentMonth($start, $end){
         $query = $this->getEntityManager()->createQuery('SELECT c FROM AppBundle:Concours c WHERE c.dateDebut BETWEEN :date_debut AND :date_fin');
-        $query->setParameter('date_debut', date('Y-m-01'));
-        $query->setParameter('date_fin', date('Y-m-'.$nbJour));
+        $query->setParameter('date_debut', $start);
+        $query->setParameter('date_fin', $end);
         try {
             return $query->getArrayResult();
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }
+    }
+
+    public function findByImportance(){
+
     }
 }

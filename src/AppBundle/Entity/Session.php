@@ -31,8 +31,13 @@ class Session extends Evenement
      * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="professeurs")
      */
     private $professeur;
-    
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
 
     /**
      * Get id
@@ -66,6 +71,30 @@ class Session extends Evenement
     public function getInstrument()
     {
         return $this->instrument;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Session
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getLieu()
+    {
+        return $this->type;
     }
 
     /**
