@@ -1,5 +1,7 @@
 {% extends 'espaceMembres/layout.html.twig' %}
-
+{% block title %}
+    Concours
+{% endblock %}
 {% block content %}
 
 
@@ -60,7 +62,9 @@
                     <h4 class="modal-title" id="myModalLabel">Ajouter un concours</h4>
                 </div>
                 <div class="modal-body">
-
+                    {{ form_start(form, {'id': 'formconcours'}) }}
+                    {{ form_widget(form)}}
+                    {{ form_end(form) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -70,21 +74,4 @@
         </div>
     </div>
 
-    <div class="modal fade edit-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modifier</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_concours_edit') }}"></a> Enregistrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}

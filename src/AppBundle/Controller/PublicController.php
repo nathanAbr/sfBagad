@@ -14,6 +14,7 @@ use AppBundle\Entity\Reunion;
 use AppBundle\Entity\Session;
 use AppBundle\Entity\Sortie;
 use AppBundle\Type\ContactType;
+use AppBundle\Type\ConcoursType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;

@@ -40,16 +40,15 @@ class EspaceMembresController extends Controller
     {
         $concours = new  Concours();
         $form = $this->createForm(ConcoursType::class, $concours);
-        $form->add('save', SubmitType::class, array(
-            'label' => 'Enregistrer',
-            'attr'  => array('class' => 'btn btn-default pull-right')));
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $concours = $form->getData();
             $em->persist($concours);
             $em->flush();
         }
-        return $this->render('espaceMembres/concours.html.twig');
+        return $this->render('espaceMembres/concours.html.twig',array(
+            'form'=> $form->createView(),
+        ));
     }
     /**
      * @Route("/admin/repetition/", name="em_repetition")
