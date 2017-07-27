@@ -10,24 +10,36 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Reunion controller.
  *
- * @Route("admin")
+ * @Route("admin/reunion")
  */
 class ReunionController extends Controller
 {
     /**
      * Lists all reunion entities.
      *
-     * @Route("/reunion2", name="admin_index")
+     * @Route("/index", name="admin_reunion_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
         $reunions = $em->getRepository('AppBundle:Reunion')->findAll();
-dump($reunions);
+
+        $reunion = new Reunion();
+        $form = $this->createForm('AppBundle\Form\ReunionType', $reunion);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($reunion);
+            $em->flush();
+            return $this->redirectToRoute('admin_index');
+        }
+
         return $this->render('reunion/index.html.twig', array(
             'reunions' => $reunions,
+            'reunion' => $reunion,
+            'form' => $form->createView()
         ));
     }
 
@@ -39,7 +51,7 @@ dump($reunions);
      */
     public function newAction(Request $request)
     {
-        $reunion = new Reunion();
+       /* $reunion = new Reunion();
         $form = $this->createForm('AppBundle\Form\ReunionType', $reunion);
         $form->handleRequest($request);
 
@@ -53,7 +65,7 @@ dump($reunions);
         return $this->render('reunion/new.html.twig', array(
             'reunion' => $reunion,
             'form' => $form->createView(),
-        ));
+        ));*/
     }
 
     /**

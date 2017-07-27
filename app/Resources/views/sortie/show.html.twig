@@ -1,0 +1,44 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+    <h1>Sortie</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sortie.id }}</td>
+            </tr>
+            <tr>
+                <th>Cachet</th>
+                <td>{{ sortie.cachet }}</td>
+            </tr>
+            <tr>
+                <th>Validation</th>
+                <td>{% if sortie.validation %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Repas</th>
+                <td>{{ sortie.repas }}</td>
+            </tr>
+            <tr>
+                <th>Tenue</th>
+                <td>{% if sortie.tenue %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_sortie_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_sortie_edit', { 'id': sortie.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

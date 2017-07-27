@@ -26,13 +26,10 @@ class Session extends Evenement
      */
     private $instrument;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="professeurs")
      */
     private $professeur;
-    
-
 
     /**
      * Get id

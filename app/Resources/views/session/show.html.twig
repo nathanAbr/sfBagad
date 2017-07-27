@@ -1,27 +1,23 @@
 {% extends 'espaceMembres/layout.html.twig' %}
 
 {% block content %}
-    <h1>Reunion</h1>
+    <h1>Session</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ reunion.id }}</td>
-            </tr>
-            <tr>
-                <th>Libelle</th>
-                <td>{{ reunion.libelle }}</td>
+                <td>{{ session.id }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('admin_index') }}">Back to the list</a>
+            <a href="{{ path('admin_session_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('admin_edit', { 'id': reunion.id }) }}">Edit</a>
+            <a href="{{ path('admin_session_edit', { 'id': session.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
