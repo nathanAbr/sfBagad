@@ -2,26 +2,88 @@
 
 {% block content %}
 
+    <!--{# for membre in listMembres #}-->
+    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".add-example-modal-lg">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+
+
+
+
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="input-group">
-                <h3>Sortie 1</h3>
+            <div class="input-group" >
+                <h3>Batterie/Percu</h3>
+
+                <div class="input-group-btn" style="padding-right: 550px">
+
+                    <button type="button" class="btn btn-default"><a href=" {{ path('em_listeMembres_sup') }}"></a>Supprimer</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".edit-example-modal-lg">Modifier</button>
+                </div>
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-default">S'inscrire</button>
-                    <button type="button" class="btn btn-default">Détail de la sortie</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Profil</button>
+
                 </div>
             </div>
         </div>
 
         <div class="panel-body">
-            <ul class="list-inline">
-                <li> <strong>Date</strong></li>
-                <li><strong>Heure de rdv</strong></li>
-                <li><strong>Lieu de rdv</strong></li>
-                <li><strong>Heure de retour</strong></li>
-                <li></li>
-            </ul>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Mail</th>
+                    <th>Cotisation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Erwan</td>
+                    <td>Raulo</td>
+                    <td>erwan.raulo2020@toto.fr</td>
+                    <td>OUI</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- {# endfor #} -->
+
+
+    <div class="modal fade edit-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modifier</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_listeMembres_edit') }}"></a>Enregistrer</button>
+                </div>
+            </div>
         </div>
     </div>
 
+    <div class="modal fade add-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Ajouter un membre</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_listeMembres_add') }}"></a>Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

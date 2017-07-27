@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <!--{# for reunion in listReunions #}-->
+    <!--{# for repettion in listRepetitions #}-->
     <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".add-example-modal-lg">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </button>
@@ -12,11 +12,11 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="input-group" >
-                <h3>Reunion</h3>
+                <h3>Caisse-claire/Percussion</h3>
 
-                <div class="input-group-btn" style="padding-right: 250px">
+                <div class="input-group-btn" >
 
-                    <button type="button" class="btn btn-default">Supprimer</button>
+                    <button type="button" class="btn btn-default"><a href=" {{ path('em_repetition_sup') }}"></a>Supprimer</button>
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target=".edit-example-modal-lg">Modifier</button>
                 </div>
 
@@ -46,24 +46,23 @@
     </div>
     <!-- {# endfor #} -->
 
-
     <div class="modal fade add-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajouter une reunion</h4>
-                </div>
-                <div class="modal-body">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Ajouter une repetition</h4>
+            </div>
+            <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_reunion_add') }}"></a> Enregistrer</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary"><a href=" {{ path('em_repetition_add') }}"></a> Enregistrer</button>
             </div>
         </div>
     </div>
+</div>
     <div class="modal fade edit-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -76,7 +75,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_reunion_sup') }}"></a>Enregistrer</button>
+                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_repetition_edit') }}"></a> Enregistrer</button>
                 </div>
             </div>
         </div>
