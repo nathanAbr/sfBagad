@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Utilisateur
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository")
  */
-class Utilisateur
+class Utilisateur extends BaseUser
 {
     /**
      * @var int
@@ -19,7 +21,56 @@ class Utilisateur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string")
+     */
+    protected $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string")
+     */
+    protected $prenom;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_naissance", type="datetime")
+     */
+    protected $date_naissance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string")
+     */
+    protected $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cp", type="string")
+     */
+    protected $cp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string")
+     */
+    protected $ville;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="cotisation", type="boolean")
+     */
+    protected $cotisation;
 
     /**
      * @ORM\OneToMany(targetEntity="Article", mappedBy="auteur")
@@ -29,6 +80,7 @@ class Utilisateur
     /**
      * @ORM\ManyToOne(targetEntity="Instrument", inversedBy="utilisateurs")
      * @ORM\JoinColumn(name="instrument_id", referencedColumnName="id")
+     * @Assert\Type(type="AppBundle\Entity\Instrument")
      */
     private $instrument;
 
