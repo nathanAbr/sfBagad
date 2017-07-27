@@ -27,8 +27,7 @@ class Reunion extends Evenement
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
-
-
+    
     /**
      * Get id
      *

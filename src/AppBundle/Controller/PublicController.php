@@ -57,14 +57,7 @@ class PublicController extends Controller
         // replace this example code with whatever you need
         return $this->render('public/palmares.html.twig');
     }
-    /**
-     * @Route("/login", name="login")
-     */
-    public function loginFormAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('public/espaceMembres.html.twig');
-    }
+    
 
     /**
      * @Route("/bagadig", name="bagadig")
