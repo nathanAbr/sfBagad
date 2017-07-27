@@ -7,10 +7,13 @@
  */
 
 namespace AppBundle\Controller;
-
+use AppBundle\Entity\Concours;
+use AppBundle\Type\ConcoursType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 
 class EspaceMembresController extends Controller
@@ -33,8 +36,19 @@ class EspaceMembresController extends Controller
     /**
      * @Route("/admin/concours/", name="em_concours")
      */
-    public function concoursAction(Request $request)
+    public function concoursAction(Request $request, EntityManagerInterface $em)
     {
+        $concours = new  Concours();
+        $form = $this->createForm(ConcoursType::class, $concours);
+        $form->add('save', SubmitType::class, array(
+            'label' => 'Enregistrer',
+            'attr'  => array('class' => 'btn btn-default pull-right')));
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $concours = $form->getData();
+            $em->persist($concours);
+            $em->flush();
+        }
         return $this->render('espaceMembres/concours.html.twig');
     }
     /**
