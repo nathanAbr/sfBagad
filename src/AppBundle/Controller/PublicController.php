@@ -90,47 +90,45 @@ class PublicController extends Controller
 
         $fs = new Filesystem();
         $fs->dumpFile('file.txt', json_encode($reunions));
-        $evenement = new \stdClass();
-        $i = 0;
 
         foreach($reunions as $reunion){
+            $evenement = new \stdClass();
             $evenement->start = $reunion['dateDebut']->format('Y-m-d H:i:s');
             $evenement->end = $reunion['dateFin']->format('Y-m-d H:i:s');
             $evenement->id = $reunion['id'];
             $evenement->url = '/evenement/'.$reunion['id'];
             $evenement->backgroundColor = 'blue';
-            $evenements[$i] = $evenement;
-            $i++;
+            array_push($evenements, $evenement);
         }
 
         foreach($sorties as $sortie){
+            $evenement = new \stdClass();
             $evenement->start = $sortie['dateDebut']->format('Y-m-d H:i:s');
             $evenement->end = $sortie['dateFin']->format('Y-m-d H:i:s');
             $evenement->id = $sortie['id'];
             $evenement->url = '/evenement/'.$sortie['id'];
             $evenement->backgroundColor = 'red';
-            $evenements[$i] = $evenement;
-            $i++;
+            array_push($evenements, $evenement);
         }
 
         foreach($concours as $concour){
+            $evenement = new \stdClass();
             $evenement->start = $concour['dateDebut']->format('Y-m-d H:i:s');
             $evenement->end = $concour['dateFin']->format('Y-m-d H:i:s');
             $evenement->id = $concour['id'];
             $evenement->url = '/evenement/'.$concour['id'];
             $evenement->backgroundColor = 'green';
-            $evenements[$i] = $evenement;
-            $i++;
+            array_push($evenements, $evenement);
         }
 
         foreach($sessions as $session){
+            $evenement = new \stdClass();
             $evenement->start = $session['dateDebut']->format('Y-m-d H:i:s');
             $evenement->end = $session['dateFin']->format('Y-m-d H:i:s');
             $evenement->id = $session['id'];
             $evenement->url = '/evenement/'.$session['id'];
             $evenement->backgroundColor = 'yellow';
-            $evenements[$i] = $evenement;
-            $i++;
+            array_push($evenements, $evenement);
         }
 
         return new Response(json_encode($evenements));
