@@ -8,6 +8,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Evenement;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Concours;
 use AppBundle\Entity\Reunion;
@@ -71,25 +73,67 @@ class PublicController extends Controller
     }
 
     /**
-     * @Route("/dataEvent", name="bagadig")
+     * @Route("/dataEvent", name="dataEvent")
      */
     public function eventDataAction(EntityManagerInterface $entityManager){
 
-        $reunions = $entityManager->getRepository(Reunion::class)->findByCurrentMonth();
-        $sorties = $entityManager->getRepository(Sortie::class)->findByCurrentMonth();
-        $concours = $entityManager->getRepository(Concours::class)->findByCurrentMonth();
-        $sessions = $entityManager->getRepository(Session::class)->findByCurrentMonth();
+        $start = $_POST['start'];
+        $end = $_POST['end'];
+
+        $reunions = $entityManager->getRepository(Reunion::class)->findByCurrentMonth($start, $end);
+        $sorties = $entityManager->getRepository(Sortie::class)->findByCurrentMonth($start, $end);
+        $concours = $entityManager->getRepository(Concours::class)->findByCurrentMonth($start, $end);
+        $sessions = $entityManager->getRepository(Session::class)->findByCurrentMonth($start, $end);
 
         dump($reunions);
 
-        $evenements["Reunions"] = $reunions;
-        $evenements["Sorties"] = $sorties;
-        $evenements["Concours"] = $concours;
-        $evenements["Sessions"] = $sessions;
+        $evenements = [];
+        $evenement = new \stdClass();
 
-        $evenements = json_encode($evenements);
+        foreach($reunions as $reunion){
+            $evenement->start = $reunion['dateDebut']->date;
+            $evenement->end = $reunion['dateFin']->date;
+            $evenement->id = $reunion['id'];
+            $evenement->url = '/evenement/'.$reunion['id'];
+            $evenement->backgroundColor = 'blue';
+            $evenements[] = $evenement;
+        }
 
-        return new Response($evenements);
+        foreach($sorties as $sortie){
+            $evenement->start = $sortie['dateDebut']->date;
+            $evenement->end = $sortie['dateFin']->date;
+            $evenement->id = $sortie['id'];
+            $evenement->url = '/evenement/'.$sortie['id'];
+            $evenement->backgroundColor = 'red';
+            $evenements[] = $evenement;
+        }
+
+        foreach($concours as $concour){
+            $evenement->start = $concour['dateDebut']->date;
+            $evenement->end = $concour['dateFin']->date;
+            $evenement->id = $concour['id'];
+            $evenement->url = '/evenement/'.$concour['id'];
+            $evenement->backgroundColor = 'green';
+            $evenements[] = $evenement;
+        }
+
+        foreach($sessions as $session){
+            $evenement->start = $session['dateDebut']->date;
+            $evenement->end = $session['dateFin']->date;
+            $evenement->id = $session['id'];
+            $evenement->url = '/evenement/'.$session['id'];
+            $evenement->backgroundColor = 'yellow';
+            $evenements[] = $evenement;
+        }
+        return new Response(json_encode($evenements));
+    }
+
+    /**
+     * @Route("/evenement/{id}", name="dateEventDescr")
+     */
+    public function eventDataDescriptionAction(Request $request, EntityManagerInterface $entityManager, $id){
+        $evenement = $entityManager->getRepository(Evenement::class)->findOneById($id);
+        return $this->render('public/evenements.html.twig', array('evenement'=>$evenement));
     }
 
     /**
