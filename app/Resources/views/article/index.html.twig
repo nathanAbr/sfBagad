@@ -1,0 +1,40 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+
+{% block content %}
+    <h1>Articles list</h1>
+    <div class="input-group-btn">
+        <a class="btn btn-white btn-default  " href="{{ path('admin_article_new')}}">Créer un article</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Datecreation</th>
+                <th>Visibilite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.contenu }}</td>
+                <td>{% if article.dateCreation %}{{ article.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if article.visibilite %}Yes{% else %}No{% endif %}</td>
+                <td>
+
+
+                    <a class="btn btn-white btn-default" href="{{ path('admin_article_show', { 'id': article.id }) }}">Afficher</a>
+                    <a class="btn btn-white btn-default" href="{{ path('admin_article_edit', { 'id': article.id }) }}">Modifier</a>
+                    <a class="btn btn-white btn-default" href="{{ path('admin_article_delete', { 'id': article.id }) }}">Supprimer</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
