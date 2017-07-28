@@ -36,19 +36,9 @@ class EspaceMembresController extends Controller
     /**
      * @Route("/admin/concours/", name="em_concours")
      */
-    public function concoursAction(Request $request, EntityManagerInterface $em)
+    public function concoursAction(Request $request)
     {
-        $concours = new  Concours();
-        $form = $this->createForm(ConcoursType::class, $concours);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $concours = $form->getData();
-            $em->persist($concours);
-            $em->flush();
-        }
-        return $this->render('espaceMembres/concours.html.twig',array(
-            'form'=> $form->createView(),
-        ));
+
     }
     /**
      * @Route("/admin/repetition/", name="em_repetition")
