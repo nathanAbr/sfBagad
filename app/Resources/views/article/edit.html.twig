@@ -3,20 +3,18 @@
 
 {% block content %}
     <h1>Modifier Article</h1>
+    <div class="action_bouton pull-right">
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Delete" class="btn btn-default"/>
+        {{ form_end(delete_form) }}
+        <a class="btn btn-default" href="{{ path('admin_article_index') }}">Back to the list</a>
+    </div>
+
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Sauvegarder" class="btn btn-success btn-default pull-right"  />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_article_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
 {% endblock %}
