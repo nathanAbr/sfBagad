@@ -26,13 +26,7 @@ class EspaceMembresController extends Controller
         // replace this example code with whatever you need
         return $this->render('espaceMembres/layout.html.twig');
     }
-    /**
-     * @Route("/admin/sortie/", name="em_sortie")
-     */
-    public function sortiesAction(Request $request)
-    {
-        return $this->render('espaceMembres/sorties.html.twig');
-    }
+    
     /**
      * @Route("/membre/listeMembres/", name="em_listeMembres")
      */

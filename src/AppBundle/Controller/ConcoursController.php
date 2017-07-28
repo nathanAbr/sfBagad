@@ -52,6 +52,8 @@ class ConcoursController extends Controller
             $concours = $form->getData();
             $em->persist($concours);
             $em->flush();
+
+            return $this->redirectToRoute('admin_concours_index', array('id' => $concours->getId()));
         }
         $concours = $em->getRepository('AppBundle:Concours')->findAll();
         return $this->render('espaceMembres/concours.html.twig',array(

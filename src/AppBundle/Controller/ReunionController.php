@@ -49,7 +49,7 @@ class ReunionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($reunion);
             $em->flush();
-            return $this->redirectToRoute('admin_index');
+            return $this->redirectToRoute('admin_reunion_index');
         }
 
         return $this->render('reunion/new.html.twig', array(

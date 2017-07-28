@@ -50,7 +50,7 @@ class SortieController extends Controller
             $em->persist($sortie);
             $em->flush();
 
-            return $this->redirectToRoute('admin_sortie_show', array('id' => $sortie->getId()));
+            return $this->redirectToRoute('admin_sortie_index', array('id' => $sortie->getId()));
         }
 
         return $this->render('sortie/new.html.twig', array(

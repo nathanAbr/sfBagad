@@ -13,7 +13,7 @@ class SessionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateDebut')->add('dateFin')->add('ville')->add('adresse')->add('titre')->add('description')->add('visibilite')->add('partitions');
+        $builder->add('dateDebut')->add('dateFin')->add('ville')->add('adresse')->add('titre')->add('description')->add('visibilite')->add('important')->add('partitions');
         $builder->add('instrument')->add('professeur');
     }
     

@@ -60,7 +60,7 @@ class ContactController extends Controller
     /**
      * Finds and displays a contact entity.
      *
-     * @Route("/{id}", name="membre_contact_show")
+     * @Route("/{id}", name="admin_contact_show")
      * @Method("GET")
      */
     public function showAction(Contact $contact)

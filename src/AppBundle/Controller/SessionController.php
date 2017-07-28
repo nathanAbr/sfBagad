@@ -50,7 +50,7 @@ class SessionController extends Controller
             $em->persist($session);
             $em->flush();
 
-            return $this->redirectToRoute('admin_session_show', array('id' => $session->getId()));
+            return $this->redirectToRoute('admin_session_index', array('id' => $session->getId()));
         }
 
         return $this->render('session/new.html.twig', array(
