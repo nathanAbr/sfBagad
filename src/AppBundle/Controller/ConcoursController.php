@@ -9,17 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 use AppBundle\Type\ConcoursType;
 use Doctrine\ORM\EntityManagerInterface;
 
-/**
- * Concour controller.
- *
- * @Route("admin/concours")
- */
+
 class ConcoursController extends Controller
 {
     /**
      * Lists all concour entities.
      *
-     * @Route("/", name="admin_concours_index")
+     * @Route("/membre/concours", name="membre_concours_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -40,7 +36,7 @@ class ConcoursController extends Controller
     /**
      * Creates a new concour entity.
      *
-     * @Route("/new", name="admin_concours_new")
+     * @Route("/admin/concours/new", name="admin_concours_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request,EntityManagerInterface $em)
@@ -52,6 +48,8 @@ class ConcoursController extends Controller
             $concours = $form->getData();
             $em->persist($concours);
             $em->flush();
+
+            return $this->redirectToRoute('membre_concours_index', array('id' => $concours->getId()));
         }
         $concours = $em->getRepository('AppBundle:Concours')->findAll();
         return $this->render('espaceMembres/concours.html.twig',array(
@@ -63,7 +61,7 @@ class ConcoursController extends Controller
     /**
      * Finds and displays a concour entity.
      *
-     * @Route("/{id}", name="admin_concours_show")
+     * @Route("membre/concours/{id}", name="membre_concours_show")
      * @Method("GET")
      */
     public function showAction(Concours $concours)
@@ -79,7 +77,7 @@ class ConcoursController extends Controller
     /**
      * Displays a form to edit an existing concour entity.
      *
-     * @Route("/{id}/edit", name="admin_concours_edit")
+     * @Route("/admin/concours/{id}/edit", name="admin_concours_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Concours $concours)
@@ -104,7 +102,7 @@ class ConcoursController extends Controller
     /**
      * Deletes a concour entity.
      *
-     * @Route("/{id}", name="admin_concours_delete")
+     * @Route("/admin/concours/{id}", name="admin_concours_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Concours $concours)
@@ -118,7 +116,7 @@ class ConcoursController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_concours_index');
+        return $this->redirectToRoute('membre_concours_index');
     }
 
     /**

@@ -17,7 +17,7 @@
         <tbody>
         {% for concour in concours %}
             <tr>
-                <td><a href="{{ path('admin_concours_show', { 'id': concour.id }) }}">{{ concour.id }}</a></td>
+                <td><a href="{{ path('membre_concours_index', { 'id': concour.id }) }}">{{ concour.id }}</a></td>
                 <td>{{ concour.titre }}</td>
                 <td>{% if concour.dateDebut %}{{ concour.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ concour.adresse }}{{ concour.cp }}{{ concour.ville }}</td>
@@ -26,7 +26,7 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('admin_concours_show', { 'id': concour.id }) }}">show</a>
+                            <a href="{{ path('membre_concours_show', { 'id': concour.id }) }}">show</a>
                         </li>
                         <li>
                             <a href="{{ path('admin_concours_edit', { 'id': concour.id }) }}">edit</a>

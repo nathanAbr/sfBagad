@@ -7,17 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Contact controller.
- *
- * @Route("admin/contact")
- */
+
 class ContactController extends Controller
 {
     /**
      * Lists all contact entities.
      *
-     * @Route("/", name="admin_contact_index")
+     * @Route("/admin/contact", name="admin_contact_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +30,7 @@ class ContactController extends Controller
     /**
      * Creates a new contact entity.
      *
-     * @Route("/new", name="membre_contact_new")
+     * @Route("/admin/contact/new", name="admin_contact_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +56,7 @@ class ContactController extends Controller
     /**
      * Finds and displays a contact entity.
      *
-     * @Route("/{id}", name="membre_contact_show")
+     * @Route("membre/contact/{id}", name="membre_contact_show")
      * @Method("GET")
      */
     public function showAction(Contact $contact)
@@ -76,7 +72,7 @@ class ContactController extends Controller
     /**
      * Displays a form to edit an existing contact entity.
      *
-     * @Route("/{id}/edit", name="admin_contact_edit")
+     * @Route("/admin/contact/{id}/edit", name="admin_contact_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Contact $contact)
@@ -101,7 +97,7 @@ class ContactController extends Controller
     /**
      * Deletes a contact entity.
      *
-     * @Route("/{id}", name="admin_contact_delete")
+     * @Route("/admin/contact/{id}", name="admin_contact_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Contact $contact)
@@ -115,7 +111,7 @@ class ContactController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_contact_index');
+        return $this->redirectToRoute('membre_contact_index');
     }
 
     /**

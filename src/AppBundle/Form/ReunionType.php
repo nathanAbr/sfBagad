@@ -13,7 +13,7 @@ class ReunionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateDebut')->add('dateFin')->add('ville')->add('adresse')->add('cp')->add('titre')->add('description')->add('visibilite')->add('partitions');
+        $builder->add('dateDebut')->add('dateFin')->add('ville')->add('adresse')->add('cp')->add('titre')->add('description')->add('visibilite')->add('important')->add('partitions');
         $builder->add('libelle');
     }
     

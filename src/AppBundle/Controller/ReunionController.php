@@ -7,17 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Reunion controller.
- *
- * @Route("admin/reunion")
- */
 class ReunionController extends Controller
 {
     /**
      * Lists all reunion entities.
      *
-     * @Route("/index", name="admin_reunion_index")
+     * @Route("/membre/reunion", name="membre_reunion_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -36,7 +31,7 @@ class ReunionController extends Controller
     /**
      * Creates a new reunion entity.
      *
-     * @Route("/new", name="admin_reunion_new")
+     * @Route("/admin/reunion/new", name="admin_reunion_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -49,7 +44,7 @@ class ReunionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($reunion);
             $em->flush();
-            return $this->redirectToRoute('admin_index');
+            return $this->redirectToRoute('membre_reunion_index');
         }
 
         return $this->render('reunion/new.html.twig', array(
@@ -61,7 +56,7 @@ class ReunionController extends Controller
     /**
      * Finds and displays a reunion entity.
      *
-     * @Route("/{id}", name="admin_reunion_show")
+     * @Route("/membre/reunion/{id}", name="membre_reunion_show")
      * @Method("GET")
      */
     public function showAction(Reunion $reunion)
@@ -77,7 +72,7 @@ class ReunionController extends Controller
     /**
      * Displays a form to edit an existing reunion entity.
      *
-     * @Route("/{id}/edit", name="admin_reunion_edit")
+     * @Route("/admin/reunion/{id}/edit", name="admin_reunion_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Reunion $reunion)
@@ -89,7 +84,7 @@ class ReunionController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_edit', array('id' => $reunion->getId()));
+            return $this->redirectToRoute('admin_reunion_edit', array('id' => $reunion->getId()));
         }
 
         return $this->render('reunion/edit.html.twig', array(
@@ -102,7 +97,7 @@ class ReunionController extends Controller
     /**
      * Deletes a reunion entity.
      *
-     * @Route("/{id}", name="admin_reunion_delete")
+     * @Route("/admin/reunion/{id}", name="admin_reunion_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Reunion $reunion)
@@ -116,7 +111,7 @@ class ReunionController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_index');
+        return $this->redirectToRoute('admin_reunion_index');
     }
 
     /**

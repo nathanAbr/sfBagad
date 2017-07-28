@@ -7,17 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Instrument controller.
- *
- * @Route("admin")
- */
 class InstrumentController extends Controller
 {
     /**
      * Lists all instrument entities.
      *
-     * @Route("/", name="admin_index")
+     * @Route("/membre/instrument", name="membre_instrument_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +29,7 @@ class InstrumentController extends Controller
     /**
      * Creates a new instrument entity.
      *
-     * @Route("/new", name="admin_new")
+     * @Route("/admin/instrument/new", name="admin_instrument_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +43,7 @@ class InstrumentController extends Controller
             $em->persist($instrument);
             $em->flush();
 
-            return $this->redirectToRoute('admin_show', array('id' => $instrument->getId()));
+            return $this->redirectToRoute('membre_instrument_index', array('id' => $instrument->getId()));
         }
 
         return $this->render('instrument/new.html.twig', array(
@@ -60,7 +55,7 @@ class InstrumentController extends Controller
     /**
      * Finds and displays a instrument entity.
      *
-     * @Route("/{id}", name="admin_show")
+     * @Route("/membre/instrument/{id}", name="membre_instrument_show")
      * @Method("GET")
      */
     public function showAction(Instrument $instrument)
@@ -76,7 +71,7 @@ class InstrumentController extends Controller
     /**
      * Displays a form to edit an existing instrument entity.
      *
-     * @Route("/{id}/edit", name="admin_edit")
+     * @Route("/admin/instrument/{id}/edit", name="admin_instrument_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Instrument $instrument)
@@ -88,7 +83,7 @@ class InstrumentController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_edit', array('id' => $instrument->getId()));
+            return $this->redirectToRoute('admin_instrument_edit', array('id' => $instrument->getId()));
         }
 
         return $this->render('instrument/edit.html.twig', array(
@@ -101,7 +96,7 @@ class InstrumentController extends Controller
     /**
      * Deletes a instrument entity.
      *
-     * @Route("/{id}", name="admin_delete")
+     * @Route("/admin/instrument/{id}", name="admin_instrument_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Instrument $instrument)
@@ -115,7 +110,7 @@ class InstrumentController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_index');
+        return $this->redirectToRoute('membre_instrument_index');
     }
 
     /**
@@ -128,7 +123,7 @@ class InstrumentController extends Controller
     private function createDeleteForm(Instrument $instrument)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_delete', array('id' => $instrument->getId())))
+            ->setAction($this->generateUrl('admin_instrument_delete', array('id' => $instrument->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -35,10 +35,10 @@
                 </table>
             </div>
             <div class="panel-footer">
-                <button type="button" class="btn btn-default"><a href="mailto:{{ contact.mail }}">Répondre</button>
-                <button  type="button" class="btn btn-default"><a href="{{ path('admin_contact_edit', { 'id': contact.id }) }}""></a>Supprimer</button>
+                <button type="button" class="btn btn-default"><a href="mailto:{{ contact.mail }}">Répondre</a></button>
+                <button  type="button" class="btn btn-default"><a href="{{ path('admin_contact_show', { 'id': contact.id }) }}">Voir</a></button>
+                <button  type="button" class="btn btn-default"><a href="{{ path('admin_contact_show', { 'id': contact.id }) }}">Supprimer</a></button>
                 <span class="pull-right"><strong>Lu:</strong>{% if contact.lu %}Yes{% else %}No{% endif %}</span>
-
             </div>
         </div>
 

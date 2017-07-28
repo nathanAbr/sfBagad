@@ -7,17 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Sortie controller.
- *
- * @Route("admin/sortie")
- */
 class SortieController extends Controller
 {
     /**
      * Lists all sortie entities.
      *
-     * @Route("/index", name="admin_sortie_index")
+     * @Route("/membre/sortie/index", name="membre_sortie_index")
      * @Method("GET")
      */
     public function indexAction(Request $request)
@@ -36,7 +31,7 @@ class SortieController extends Controller
     /**
      * Creates a new sortie entity.
      *
-     * @Route("/new", name="admin_sortie_new")
+     * @Route("/admin/sortie/new", name="admin_sortie_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -50,7 +45,7 @@ class SortieController extends Controller
             $em->persist($sortie);
             $em->flush();
 
-            return $this->redirectToRoute('admin_sortie_show', array('id' => $sortie->getId()));
+            return $this->redirectToRoute('membre_sortie_index', array('id' => $sortie->getId()));
         }
 
         return $this->render('sortie/new.html.twig', array(
@@ -62,7 +57,7 @@ class SortieController extends Controller
     /**
      * Finds and displays a sortie entity.
      *
-     * @Route("/{id}", name="admin_sortie_show")
+     * @Route("/membre/sortie/{id}", name="membre_sortie_show")
      * @Method("GET")
      */
     public function showAction(Sortie $sortie)
@@ -78,7 +73,7 @@ class SortieController extends Controller
     /**
      * Displays a form to edit an existing sortie entity.
      *
-     * @Route("/{id}/edit", name="admin_sortie_edit")
+     * @Route("/admin/sortie/{id}/edit", name="admin_sortie_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Sortie $sortie)
@@ -103,7 +98,7 @@ class SortieController extends Controller
     /**
      * Deletes a sortie entity.
      *
-     * @Route("/{id}", name="admin_sortie_delete")
+     * @Route("/admin/sortie/{id}", name="admin_sortie_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Sortie $sortie)
@@ -117,7 +112,7 @@ class SortieController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_sortie_index');
+        return $this->redirectToRoute('membre_sortie_index');
     }
 
     /**

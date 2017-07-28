@@ -7,17 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Session controller.
- *
- * @Route("admin/session")
- */
 class SessionController extends Controller
 {
     /**
      * Lists all session entities.
      *
-     * @Route("/index", name="admin_session_index")
+     * @Route("/membre/session", name="membre_session_index")
      * @Method("GET")
      */
     public function indexAction(Request $request)
@@ -36,7 +31,7 @@ class SessionController extends Controller
     /**
      * Creates a new session entity.
      *
-     * @Route("/new", name="admin_session_new")
+     * @Route("/admin/session/new", name="admin_session_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -50,7 +45,7 @@ class SessionController extends Controller
             $em->persist($session);
             $em->flush();
 
-            return $this->redirectToRoute('admin_session_show', array('id' => $session->getId()));
+            return $this->redirectToRoute('membre_session_index', array('id' => $session->getId()));
         }
 
         return $this->render('session/new.html.twig', array(
@@ -62,7 +57,7 @@ class SessionController extends Controller
     /**
      * Finds and displays a session entity.
      *
-     * @Route("/{id}", name="admin_session_show")
+     * @Route("/membre/session/{id}", name="membre_session_show")
      * @Method("GET")
      */
     public function showAction(Session $session)
@@ -78,7 +73,7 @@ class SessionController extends Controller
     /**
      * Displays a form to edit an existing session entity.
      *
-     * @Route("/{id}/edit", name="admin_session_edit")
+     * @Route("/admin/session/{id}/edit", name="admin_session_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Session $session)
@@ -103,7 +98,7 @@ class SessionController extends Controller
     /**
      * Deletes a session entity.
      *
-     * @Route("/{id}", name="admin_session_delete")
+     * @Route("/admin/session/{id}", name="admin_session_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Session $session)
@@ -117,7 +112,7 @@ class SessionController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_session_index');
+        return $this->redirectToRoute('membre_session_index');
     }
 
     /**
