@@ -16,6 +16,7 @@ use AppBundle\Entity\Concours;
 use AppBundle\Entity\Reunion;
 use AppBundle\Entity\Session;
 use AppBundle\Entity\Sortie;
+use AppBundle\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
