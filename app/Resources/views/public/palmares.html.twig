@@ -6,7 +6,7 @@
             <ul>
                 {% for palmares in listPalmares  %}
                     <li>
-                        <a href="#" onclick="dataPalmares({{ palmares.id }});">
+                        <a onclick="dataPalmares({{ palmares.id }});">
                             <div >
                                 <h3>{{ palmares.titre }}</h3>
                                 <p class="text-justify">
@@ -29,15 +29,15 @@
     <script>
         function dataPalmares(id){
             $.ajax({
-                url: '/dataPalamares',
+                url: '{{ path('OncePalmares') }}',
                 type: 'POST',
                 data: "id="+id,
-                dataType: json,
-                success: function(result){
-                    $('#palmaresTitre').innerText = result.titre;
-                    $('#palmaresDescription').innerText = result.description;
+                dataType: 'json',
+                success: function(data, success){
+                    document.querySelector('#palmaresTitre').innerText = data.titre;
+                    document.querySelector('#palmaresDescription').innerText = data.description;
                 }
-            })
+            });
         }
     </script>
 {% endblock %}

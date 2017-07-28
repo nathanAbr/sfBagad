@@ -62,12 +62,14 @@ class PublicController extends Controller
     }
 
     /**
-     * @Route("/dataPalamares", name="dataPalmares")
+     * @Route("/dataPalmares", name="OncePalmares")
      */
     public function dataPalmaresAction(Request $request, EntityManagerInterface $entityManager){
         $palmares = $entityManager->getRepository(Resultat::class)->findOneById($_POST['id']);
-
-        return new Response(json_encode($palmares));
+        $object = new \stdClass();
+        $object->titre = $palmares->getTitre();
+        $object->description = $palmares->getDescription();
+        return new Response(json_encode($object));
     }
     
 
