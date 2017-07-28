@@ -7,16 +7,19 @@
  */
 
 namespace AppBundle\Controller;
-
+use AppBundle\Entity\Concours;
+use AppBundle\Type\ConcoursType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 
 class EspaceMembresController extends Controller
 {
     /**
-     * @Route("/membre/acceuil/", name="em_acceuil")
+     * @Route("/membre/acceuil/", name="em_accueil")
      */
     public function indexAction(Request $request)
     {
@@ -35,7 +38,7 @@ class EspaceMembresController extends Controller
      */
     public function concoursAction(Request $request)
     {
-        return $this->render('espaceMembres/concours.html.twig');
+
     }
     /**
      * @Route("/admin/repetition/", name="em_repetition")
