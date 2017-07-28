@@ -43,9 +43,10 @@ class RegistrationType extends AbstractType
             ->add('roles', CollectionType::class, array(
                 'entry_type'   => ChoiceType::class,
                 'entry_options'  => array(
+                    'label'=> false,
                     'choices'  => array(
-                        'Admin' => 'ROLE_ADMIN',
-                        'User' => 'ROLE_MEMBRE',
+                        'Administrateur' => 'ROLE_ADMIN',
+                        'Membre' => 'ROLE_MEMBRE',
                     ),
                 ),
             ));

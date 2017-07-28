@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class EspaceMembresController extends Controller
 {
     /**
-     * @Route("/membre/acceuil/", name="em_accueil")
+     * @Route("/membre/accueil/", name="em_accueil")
      */
     public function indexAction(Request $request)
     {
@@ -56,14 +56,10 @@ class EspaceMembresController extends Controller
      */
     public function listeMembresAction(Request $request)
     {
-        return $this->render('espaceMembres/listeMembres.html.twig');
-    }
-    /**
-     * @Route("/membre/profil/", name="em_profil")
-     */
-    public function profilAction(Request $request)
-    {
-        return $this->render('espaceMembres/profil.html.twig');
+        $userManager = $this->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
+
+        return $this->render('espaceMembres/listeMembres.html.twig', array('users' => $users));
     }
     /**
      * @Route("/admin/messagerie/", name="em_messagerie")
@@ -84,11 +80,16 @@ class EspaceMembresController extends Controller
         return $this->render('espaceMembres/listeMembres.html.twig');
     }
     /**
-     * @Route("/admin/listeMembres/edit", name="em_listeMembres_edit")
+     * @Route("/admin/listeMembres/{id}/edit", name="em_listeMembres_edit")
      */
-    public function listeMembresActionEdit(Request $request)
+    public function listeMembresActionEdit(Request $request, $id)
     {
-        return $this->render('espaceMembres/listeMembres.html.twig');
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(array('id'=>$id));
+
+        $userManager ->updateUser($user, false);
+
+        return $this->render('@FOSUser/Registration/register.html.twig', array('user' => $user));
     }
     /**
      * @Route("/membre/listeMembres/profil", name="em_listeMembres_profil")
@@ -195,22 +196,6 @@ class EspaceMembresController extends Controller
         return $this->render('espaceMembres/repetitions.html.twig');
     }
 
-    /*========================profil===========================*/
-
-    /**
-     * @Route("/admin/profil/sup", name="em_profil_sup")
-     */
-    public function profilActionSup(Request $request)
-    {
-        return $this->render('espaceMembres/profil.html.twig');
-    }
-    /**
-     * @Route("/admin/profil/edit", name="em_profil_edit")
-     */
-    public function profilActionEdit(Request $request)
-    {
-        return $this->render('espaceMembres/profil.html.twig');
-    }
 
     /*========================reunion===========================*/
 

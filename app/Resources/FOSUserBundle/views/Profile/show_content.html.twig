@@ -1,0 +1,49 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+    <div class="row">
+        <div class=" toppad" >
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ user.username }}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://success.salesforce.com/resource/1499817600000/sharedlayout/img/new-user-image-default.png" class="img-circle img-responsive"> </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td>Instrument</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Rôle</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Addresse</td>
+                                    <td>{{ user.adresse }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Cotisation</td>
+                                    <td>{{ user.cotisation }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="{{ path('fos_user_profile_edit') }}" type="button" class="btn btn-default">Modifier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

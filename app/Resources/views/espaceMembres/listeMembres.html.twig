@@ -1,32 +1,15 @@
 {% extends 'espaceMembres/layout.html.twig' %}
 
 {% block content %}
-
-    <!--{# for membre in listMembres #}-->
-    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".add-example-modal-lg">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </button>
-
-
-
-
+    <h1>Espace membres</h1>
     <div class="panel panel-default">
         <div class="panel-heading">
+            {% if is_granted('ROLE_ADMIN') %}
             <div class="input-group" >
-                <h3>Batterie/Percu</h3>
-
-                <div class="input-group-btn" style="padding-right: 550px">
-
-                    <button type="button" class="btn btn-default"><a href=" {{ path('em_listeMembres_sup') }}"></a>Supprimer</button>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".edit-example-modal-lg">Modifier</button>
-                </div>
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Profil</button>
-
-                </div>
+                <a class="btn btn-white btn-default btn-lg active" href="{{ path('fos_user_registration_register')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
             </div>
+            {% endif %}
         </div>
-
         <div class="panel-body">
             <table class="table">
                 <thead>
@@ -35,55 +18,31 @@
                     <th>Prenom</th>
                     <th>Mail</th>
                     <th>Cotisation</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <th>Actions</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Erwan</td>
-                    <td>Raulo</td>
-                    <td>erwan.raulo2020@toto.fr</td>
-                    <td>OUI</td>
-                </tr>
+                {% for membre in users %}
+                    <tr>
+                        <td>{{ membre.nom }}</td>
+                        <td>{{ membre.prenom }}</td>
+                        <td>{{ membre.email }}</td>
+                        <td>{{ membre.cotisation }}</td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <td>
+                            <div class="input-group-btn">
+                                <a class="btn btn-white btn-default  " href="{{ path('em_listeMembres_profil', { 'id': membre.id })}}">Afficher</a>
+                                <a class="btn btn-white btn-default  " href="{{ path('em_listeMembres_edit', { 'id': membre.id })}}">Modifier</a>
+                            </div>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
     <!-- {# endfor #} -->
-
-
-    <div class="modal fade edit-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modifier</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_listeMembres_edit') }}"></a>Enregistrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade add-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajouter un membre</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_listeMembres_add') }}"></a>Enregistrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}
