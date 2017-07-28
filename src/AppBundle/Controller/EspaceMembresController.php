@@ -45,7 +45,7 @@ class EspaceMembresController extends Controller
      */
     public function repetitionsAction(Request $request)
     {
-        return $this->render('espaceMembres/repetitions.html.twig');
+        return $this->render('espaceMembres/session.html.twig');
     }
     /**
      * @Route("/admin/reunion/", name="em_reunion")
@@ -181,21 +181,21 @@ class EspaceMembresController extends Controller
      */
     public function repetitionActionSup(Request $request)
     {
-        return $this->render('espaceMembres/repetitions.html.twig');
+        return $this->render('espaceMembres/session.html.twig');
     }
     /**
      * @Route("/admin/repetition/edit", name="em_repetition_edit")
      */
     public function repetitionActionEdit(Request $request)
     {
-        return $this->render('espaceMembres/repetitions.html.twig');
+        return $this->render('espaceMembres/session.html.twig');
     }
     /**
      * @Route("/admin/repetition/add", name="em_repetition_add")
      */
     public function repetitionActionAdd(Request $request)
     {
-        return $this->render('espaceMembres/repetitions.html.twig');
+        return $this->render('espaceMembres/session.html.twig');
     }
 
     /*========================profil===========================*/

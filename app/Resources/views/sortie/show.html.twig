@@ -1,0 +1,78 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+    <h1>Sortie</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Datedebut</th>
+            <td>{% if sortie.dateDebut %}{{ sortie.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Datefin</th>
+            <td>{% if sortie.dateFin %}{{ sortie.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Ville</th>
+            <td>{{ sortie.ville }}</td>
+        </tr>
+        <tr>
+            <th>Adresse</th>
+            <td>{{ sortie.adresse }}</td>
+        </tr>
+        <tr>
+            <th>Cp</th>
+            <td>{{ sortie.cp }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ sortie.titre }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ sortie.description }}</td>
+        </tr>
+        <tr>
+            <th>Visibilite</th>
+            <td>{% if sortie.visibilite %}Yes{% else %}No{% endif %}</td>
+        </tr>
+            <tr>
+                <th>Cachet</th>
+                <td>{{ sortie.cachet }}</td>
+            </tr>
+            <tr>
+                <th>Validation</th>
+                <td>{% if sortie.validation %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Repas</th>
+                <td>{{ sortie.repas }}</td>
+            </tr>
+            <tr>
+                <th>Tenue</th>
+                <td>{% if sortie.tenue %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        <tr>
+            <th>Actions</th>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_sortie_index') }}">Back to the list</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_sortie_edit', { 'id': sortie.id }) }}">Edit</a>
+                    </li>
+                    <li>
+                        {{ form_start(delete_form) }}
+                        <input type="submit" value="Delete">
+                        {{ form_end(delete_form) }}
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

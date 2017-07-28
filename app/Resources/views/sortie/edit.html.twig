@@ -1,7 +1,7 @@
 {% extends 'espaceMembres/layout.html.twig' %}
 
 {% block content %}
-    <h1>Evenement edit</h1>
+    <h1>Sortie edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_evenement_index') }}">Back to the list</a>
+            <a href="{{ path('admin_sortie_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

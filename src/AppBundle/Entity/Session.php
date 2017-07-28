@@ -18,7 +18,6 @@ class Session extends Evenement
      */
     private $instrument;
 
-
     /**
      * @var string
      *

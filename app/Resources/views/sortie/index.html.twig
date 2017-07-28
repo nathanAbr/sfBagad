@@ -1,0 +1,65 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+    <h1>Sorties</h1>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="input-group" >
+
+            <a class="btn btn-white btn-default btn-lg active" href="{{ path('admin_sortie_new')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+
+        </div>
+    </div>
+    <div class="panel-body">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Ville</th>
+                <th>Adresse</th>
+                <th>Cp</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Cachet</th>
+                <th>Validée</th>
+                <th>Repas</th>
+                <th>Tenue</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sortie in sorties %}
+            <tr>
+                <td>{% if sortie.dateDebut %}{{ evenement.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if sortie.dateFin %}{{ evenement.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ sortie.ville }}</td>
+                <td>{{ sortie.adresse }}</td>
+                <td>{{ sortie.cp }}</td>
+                <td>{{ sortie.titre }}</td>
+                <td>{{ sortie.description }}</td><td>{{ sortie.cachet }}</td>
+                <td>{% if sortie.validation %}Yes{% else %}No{% endif %}</td>
+                <td>{{ sortie.repas }}</td>
+                <td>{% if sortie.tenue %}Yes{% else %}No{% endif %}</td>
+                <td>
+
+
+
+
+                    <div class="input-group-btn">
+                      {#  <form method="DELETE" action="{{ path('admin_sortie_delete', {id: sortie.id})}}">
+                        <button type="button" class="btn btn-default">DELETE</button>
+                        </form> #}
+                        <a class="btn btn-white btn-default  " href="{{ path('admin_sortie_show', { 'id': reunion.id })}}">Afficher</a>
+                        <a class="btn btn-white btn-default  " href="{{ path('admin_sortie_edit', { 'id': reunion.id })}}">Modifier</a>
+                    </div>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+{% endblock %}

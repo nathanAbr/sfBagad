@@ -1,6 +1,7 @@
 {% extends 'espaceMembres/layout.html.twig' %}
 
 {% block content %}
+    <h1>Nouvelle Sortie</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -9,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_index') }}">Back to the list</a>
+            <a href="{{ path('admin_sortie_index') }}">Liste des sorties</a>
         </li>
     </ul>
 {% endblock %}

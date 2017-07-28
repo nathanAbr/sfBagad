@@ -10,31 +10,33 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Reunion controller.
  *
- * @Route("admin")
+ * @Route("admin/reunion")
  */
 class ReunionController extends Controller
 {
     /**
      * Lists all reunion entities.
      *
-     * @Route("/reunion2", name="admin_index")
+     * @Route("/index", name="admin_reunion_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $reunions = $em->getRepository('AppBundle:Reunion')->findAll();
-dump($reunions);
+
+
+
         return $this->render('reunion/index.html.twig', array(
             'reunions' => $reunions,
+
         ));
     }
 
     /**
      * Creates a new reunion entity.
      *
-     * @Route("/new", name="admin_new")
+     * @Route("/new", name="admin_reunion_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -59,7 +61,7 @@ dump($reunions);
     /**
      * Finds and displays a reunion entity.
      *
-     * @Route("/{id}", name="admin_show")
+     * @Route("/{id}", name="admin_reunion_show")
      * @Method("GET")
      */
     public function showAction(Reunion $reunion)
@@ -75,7 +77,7 @@ dump($reunions);
     /**
      * Displays a form to edit an existing reunion entity.
      *
-     * @Route("/{id}/edit", name="admin_edit")
+     * @Route("/{id}/edit", name="admin_reunion_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Reunion $reunion)
@@ -100,7 +102,7 @@ dump($reunions);
     /**
      * Deletes a reunion entity.
      *
-     * @Route("/{id}", name="admin_delete")
+     * @Route("/{id}", name="admin_reunion_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Reunion $reunion)
@@ -127,7 +129,7 @@ dump($reunions);
     private function createDeleteForm(Reunion $reunion)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_delete', array('id' => $reunion->getId())))
+            ->setAction($this->generateUrl('admin_reunion_delete', array('id' => $reunion->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
