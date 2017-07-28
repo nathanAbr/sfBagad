@@ -12,14 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Sortie extends Evenement
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @var float
@@ -55,15 +47,6 @@ class Sortie extends Evenement
     */
     private $organisateur;
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set cachet

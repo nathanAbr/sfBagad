@@ -12,14 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Session extends Evenement
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Instrument", inversedBy="sessions")
@@ -38,16 +30,6 @@ class Session extends Evenement
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set instrument
