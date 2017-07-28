@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Evenement;
+use AppBundle\Entity\Resultat;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,13 +34,14 @@ class PublicController extends Controller
         $evenementsVis = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true), array('dateAjout'=>'DESC'), 2);
         $sessionRepetition = $entityManager->getRepository(Session::class)->findByTypeAndAjout('Repetion');
         $sessionCours = $entityManager->getRepository(Session::class)->findByTypeAndAjout('Cours');
+        $palmares = $entityManager->getRepository(Resultat::class)->findOneByVisibilite(true, null, 1);
 
         $evenementsVis['Repetition'] = $sessionRepetition;
         $evenementsVis['Cours'] = $sessionCours;
 
         dump($evenementsVis);
 
-        return $this->render('public/accueil.html.twig', array('evenementsImportants'=>$evenementsImp, 'evenementsAutres'=>$evenementsVis));
+        return $this->render('public/accueil.html.twig', array('evenementsImportants'=>$evenementsImp, 'evenementsAutres'=>$evenementsVis, 'Palmares'=>$palmares));
     }
 
     /**
@@ -53,10 +55,11 @@ class PublicController extends Controller
     /**
      * @Route("/palmares", name="palmares")
      */
-    public function palmaresAction(Request $request)
+    public function palmaresAction(Request $request, EntityManagerInterface $entityManager)
     {
-        // replace this example code with whatever you need
-        return $this->render('public/palmares.html.twig');
+        $palmares = $entityManager->getRepository(Resultat::class)->findByVisibilite(true);
+
+        return $this->render('public/palmares.html.twig', array("listPalmares"=>$palmares));
     }
     
 
