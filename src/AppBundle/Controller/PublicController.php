@@ -18,6 +18,9 @@ use AppBundle\Entity\Concours;
 use AppBundle\Entity\Reunion;
 use AppBundle\Entity\Session;
 use AppBundle\Entity\Sortie;
+
+use AppBundle\Type\ContactType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
