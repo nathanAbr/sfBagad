@@ -19,7 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class EspaceMembresController extends Controller
 {
     /**
-     * @Route("/membre/acceuil/", name="em_acceuil")
+     * @Route("/membre/acceuil/", name="em_accueil")
      */
     public function indexAction(Request $request)
     {

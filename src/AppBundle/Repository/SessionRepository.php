@@ -10,13 +10,23 @@ namespace AppBundle\Repository;
  */
 class SessionRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByCurrentMonth(){
+    public function findByCurrentMonth($start, $end){
         $nbJour = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
         $query = $this->getEntityManager()->createQuery('SELECT s FROM AppBundle:Session s WHERE s.dateDebut BETWEEN :date_debut AND :date_fin');
-        $query->setParameter('date_debut', date('Y-m-01'));
-        $query->setParameter('date_fin', date('Y-m-'.$nbJour));
+        $query->setParameter('date_debut', $start);
+        $query->setParameter('date_fin', $end);
         try {
             return $query->getArrayResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
+
+    public function findByTypeAndAjout($type){
+        $query = $this->getEntityManager()->createQuery('SELECT s FROM AppBundle:Session s WHERE s.type = :type');
+        $query->setParameter('type', $type);
+        try {
+            return $query->getSingleResult();
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }

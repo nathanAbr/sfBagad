@@ -6,6 +6,22 @@
         <div class="container">
             <div id="calendar"></div>
         </div>
+        {% if evenement is defined %}
+        <div class="modal fade" id="eventModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">×</a>
+                    <h3>{{ evenement.titre }}</h3>
+                </div>
+                <div class="modal-body">
+                    <p>{{ evenement.description }}</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" id="eventModalClose" data-dismiss="modal" >Close</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     {% endblock %}
 {% endblock %}
 {% block javascripts %}
@@ -17,25 +33,19 @@
                 nowIndicator:true,
                 locale: 'fr',
                 columnFormat: 'dddd',
-                events: function(start, end, timezone, callback){
-                    $.ajax({
-                        url:'/dataEvent',
-                        dataType: 'json',
-                        success: function(data){
-                            var events = [];
-                            $(data.Reunions).each(function(){
-                                events.push({
-                                    title: $(this).attr('titre'),
-                                    start: $(this).attr('dateDebut').date,
-                                    end: $(this).attr('dateFin').date
-                                });
-                            });
-                            callback(events);
-                        }
-                    });
+                refetchResourcesOnNavigate: true,
+                events: {
+                    url:'/dataEvent',
+                    type: 'GET'
                 }
             })
-
         });
     </script>
+    {% if evenement is defined %}
+        <script type="text/javascript">
+            $(window).on('load',function(){
+                $('#eventModal').modal('show');
+            });
+        </script>
+    {% endif %}
 {% endblock %}

@@ -40,6 +40,13 @@ class Evenement
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="date_ajout", type="datetime")
+     */
+    private $dateAjout;
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="date_fin", type="datetime")
      */
     private $dateFin;
@@ -85,6 +92,13 @@ class Evenement
      * @ORM\Column(name="visibilite", type="boolean", options={"default":true})
      */
     private $visibilite;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="important", type="boolean", options={"default":false})
+     */
+    private $important;
     
     /**
      * @ORM\OneToMany(targetEntity="UtilisateurEvenement", mappedBy="evenements")
@@ -156,6 +170,30 @@ class Evenement
     }
 
     /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Evenement
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
+    }
+
+    /**
      * Set lieu
      *
      * @param string $lieu
@@ -185,6 +223,7 @@ class Evenement
     {
         $this->utilisateurEvenements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->partitions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateAjout = new \DateTime();
     }
 
     /**
@@ -397,5 +436,29 @@ class Evenement
     public function getVisibilite()
     {
         return $this->visibilite;
+    }
+
+    /**
+     * Set visibilite
+     *
+     * @param boolean $important
+     *
+     * @return Evenement
+     */
+    public function setImportant($important)
+    {
+        $this->important = $important;
+
+        return $this;
+    }
+
+    /**
+     * Get important
+     *
+     * @return boolean
+     */
+    public function getImportant()
+    {
+        return $this->important;
     }
 }

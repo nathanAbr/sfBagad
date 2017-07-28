@@ -18,6 +18,20 @@ class Concours extends Evenement
     private $resultat;
 
     /**
+     * Set resultat
+     *
+     * @param \AppBundle\Entity\Resultat $resultat
+     *
+     * @return Concours
+     */
+    public function setResultat(\AppBundle\Entity\Resultat $resultat = null)
+    {
+        $this->resultat = $resultat;
+
+        return $this;
+    }
+
+    /**
      * Get resultat
      *
      * @return \AppBundle\Entity\Resultat

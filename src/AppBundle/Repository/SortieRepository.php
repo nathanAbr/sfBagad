@@ -10,11 +10,11 @@ namespace AppBundle\Repository;
  */
 class SortieRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByCurrentMonth(){
+    public function findByCurrentMonth($start, $end){
         $nbJour = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
         $query = $this->getEntityManager()->createQuery('SELECT s FROM AppBundle:Sortie s WHERE s.dateDebut BETWEEN :date_debut AND :date_fin');
-        $query->setParameter('date_debut', date('Y-m-01'));
-        $query->setParameter('date_fin', date('Y-m-'.$nbJour));
+        $query->setParameter('date_debut', $start);
+        $query->setParameter('date_fin', $end);
         try {
             return $query->getArrayResult();
         } catch (\Doctrine\ORM\NoResultException $e) {

@@ -36,6 +36,13 @@ class Resultat
     private $description;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="visibilite", type="boolean", options={"default":true})
+     */
+    private $visibilite;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="media", type="string", length=255, nullable=true)
@@ -93,6 +100,30 @@ class Resultat
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * Set visibilite
+     *
+     * @param boolean $visibilite
+     *
+     * @return Resultat
+     */
+    public function setVisibilite($visibilite)
+    {
+        $this->visibilite = $visibilite;
+
+        return $this;
+    }
+
+    /**
+     * Get visibilite
+     *
+     * @return boolean
+     */
+    public function getVisibilite()
+    {
+        return $this->visibilite;
     }
 
     /**
