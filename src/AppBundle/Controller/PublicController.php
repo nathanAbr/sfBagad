@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Evenement;
 use AppBundle\Entity\Resultat;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Concours;
@@ -31,13 +32,8 @@ class PublicController extends Controller
     public function indexAction(Request $request, EntityManagerInterface $entityManager)
     {
         $evenementsImp = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true, 'important'=>true), null, 3);
-        $evenementsVis = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true), array('dateAjout'=>'DESC'), 2);
-        $sessionRepetition = $entityManager->getRepository(Session::class)->findByTypeAndAjout('Repetion');
-        $sessionCours = $entityManager->getRepository(Session::class)->findByTypeAndAjout('Cours');
+        $evenementsVis = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true, 'important'=>false), array('dateAjout'=>'DESC'), 2);
         $palmares = $entityManager->getRepository(Resultat::class)->findOneByVisibilite(true, null, 1);
-
-        $evenementsVis['Repetition'] = $sessionRepetition;
-        $evenementsVis['Cours'] = $sessionCours;
 
         dump($evenementsVis);
 
@@ -60,6 +56,15 @@ class PublicController extends Controller
         $palmares = $entityManager->getRepository(Resultat::class)->findByVisibilite(true);
 
         return $this->render('public/palmares.html.twig', array("listPalmares"=>$palmares));
+    }
+
+    /**
+     * @Route("/dataPalamares", name="dataPalmares")
+     */
+    public function dataPalmaresAction(Request $request, EntityManagerInterface $entityManager){
+        $palmares = $entityManager->getRepository(Resultat::class)->findOneById($_POST['id']);
+
+        return new Response(json_encode($palmares));
     }
     
 

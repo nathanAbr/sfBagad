@@ -20,7 +20,9 @@ class Session extends Evenement
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="professeurs")
+     * @var string
+     *
+     * @ORM\Column(name="professeur", type="string", length=255)
      */
     private $professeur;
 
@@ -82,11 +84,11 @@ class Session extends Evenement
     /**
      * Set professeur
      *
-     * @param \AppBundle\Entity\Utilisateur $professeur
+     * @param String $professeur
      *
      * @return Session
      */
-    public function setProfesseur(\AppBundle\Entity\Utilisateur $professeur = null)
+    public function setProfesseur($professeur)
     {
         $this->professeur = $professeur;
 
@@ -96,7 +98,7 @@ class Session extends Evenement
     /**
      * Get professeur
      *
-     * @return \AppBundle\Entity\Utilisateur
+     * @return String
      */
     public function getProfesseur()
     {
