@@ -19,40 +19,12 @@ use Doctrine\ORM\EntityManagerInterface;
 class EspaceMembresController extends Controller
 {
     /**
-     * @Route("/membre/acceuil/", name="em_accueil")
+     * @Route("/membre/accueil/", name="em_accueil")
      */
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('espaceMembres/layout.html.twig');
-    }
-    /**
-     * @Route("/admin/sortie/", name="em_sortie")
-     */
-    public function sortiesAction(Request $request)
-    {
-        return $this->render('espaceMembres/sorties.html.twig');
-    }
-    /**
-     * @Route("/admin/concours/", name="em_concours")
-     */
-    public function concoursAction(Request $request)
-    {
-
-    }
-    /**
-     * @Route("/admin/repetition/", name="em_repetition")
-     */
-    public function repetitionsAction(Request $request)
-    {
-        return $this->render('espaceMembres/session.html.twig');
-    }
-    /**
-     * @Route("/admin/reunion/", name="em_reunion")
-     */
-    public function reunionsAction(Request $request)
-    {
-        return $this->render('espaceMembres/reunions.html.twig');
     }
     /**
      * @Route("/membre/listeMembres/", name="em_listeMembres")

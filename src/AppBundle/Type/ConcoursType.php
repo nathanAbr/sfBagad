@@ -21,6 +21,7 @@ class ConcoursType extends AbstractType
         ->add('adresse')
         ->add('cp')
         ->add('visibilite')
+        ->add('important')
         ->add('utilisateurs', EntityType::class, array(
             'class' => 'AppBundle:Utilisateur',
             'choice_label' => 'nom',
