@@ -19,7 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class EspaceMembresController extends Controller
 {
     /**
-     * @Route("/membre/acceuil/", name="em_accueil")
+     * @Route("/membre/accueil/", name="em_accueil")
      */
     public function indexAction(Request $request)
     {
@@ -34,27 +34,6 @@ class EspaceMembresController extends Controller
         return $this->render('espaceMembres/sorties.html.twig');
     }
     /**
-     * @Route("/admin/concours/", name="em_concours")
-     */
-    public function concoursAction(Request $request)
-    {
-
-    }
-    /**
-     * @Route("/admin/repetition/", name="em_repetition")
-     */
-    public function repetitionsAction(Request $request)
-    {
-        return $this->render('espaceMembres/session.html.twig');
-    }
-    /**
-     * @Route("/admin/reunion/", name="em_reunion")
-     */
-    public function reunionsAction(Request $request)
-    {
-        return $this->render('espaceMembres/reunions.html.twig');
-    }
-    /**
      * @Route("/membre/listeMembres/", name="em_listeMembres")
      */
     public function listeMembresAction(Request $request)
@@ -67,13 +46,6 @@ class EspaceMembresController extends Controller
     public function profilAction(Request $request)
     {
         return $this->render('espaceMembres/profil.html.twig');
-    }
-    /**
-     * @Route("/admin/messagerie/", name="em_messagerie")
-     */
-    public function messagerieAction(Request $request)
-    {
-        return $this->render('espaceMembres/messagerie.html.twig');
     }
 
                                 /*========================listeMembres===========================*/

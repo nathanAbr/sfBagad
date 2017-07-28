@@ -34,12 +34,12 @@
         {% for session in sessions %}
             <tr>
                 <td>{{ session.titre }}</td>
-                <td>{% if reunion.dateDebut %}{{ session.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if reunion.dateFin %}{{ session.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if session.dateDebut %}{{ session.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if session.dateFin %}{{ session.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ session.ville }}</td>
                 <td>{{ session.adresse }}</td>
                 <td>{{ session.description }}</td>
-                <td>{{ session.instrument }}</td>
+                <td>{{ session.instrument.libelle }}</td>
                 <td>{{ session.professeur }}</td>
                 {#  <td>{{ session.cp }}</td>
                 <td>{% if session.visibilite %}Yes{% else %}No{% endif %}</td>
@@ -48,8 +48,8 @@
                 <td>
                     <div class="input-group-btn">
 
-                        <a class="btn btn-white btn-default  " href="{{ path('admin_session_show', { 'id': reunion.id })}}">Afficher</a>
-                        <a class="btn btn-white btn-default  " href="{{ path('admin_session_edit', { 'id': reunion.id })}}">Modifier</a>
+                        <a class="btn btn-white btn-default  " href="{{ path('admin_session_show', { 'id': session.id })}}">Afficher</a>
+                        <a class="btn btn-white btn-default  " href="{{ path('admin_session_edit', { 'id': session.id })}}">Modifier</a>
                     </div>
                 </td>
             </tr>
