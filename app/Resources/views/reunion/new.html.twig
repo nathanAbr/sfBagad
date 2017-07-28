@@ -1,4 +1,6 @@
+{% extends 'espaceMembres/layout.html.twig' %}
 
+{% block content %}
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -10,3 +12,4 @@
             <a href="{{ path('admin_index') }}">Back to the list</a>
         </li>
     </ul>
+{% endblock %}

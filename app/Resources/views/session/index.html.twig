@@ -6,9 +6,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="input-group" >
-                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".add-example-modal-lg">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                </button>
+
+                <a class="btn btn-white btn-default btn-lg active" href="{{ path('admin_session_new')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+
             </div>
         </div>
     <div class="panel-body">
@@ -48,8 +48,8 @@
                 <td>
                     <div class="input-group-btn">
 
-                        <button type="button" class="btn btn-default"><a href="{{ path('admin_session_show', { 'id': reunion.id }) }}"></a >Afficher</button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".edit-example-modal-lg">Modifier</button>
+                        <a class="btn btn-white btn-default  " href="{{ path('admin_session_show', { 'id': reunion.id })}}">Afficher</a>
+                        <a class="btn btn-white btn-default  " href="{{ path('admin_session_edit', { 'id': reunion.id })}}">Modifier</a>
                     </div>
                 </td>
             </tr>
@@ -59,40 +59,6 @@
     </div>
     </div>
 
-    <div class="modal fade add-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h2 class="modal-title" id="myModalLabel">Ajouter une session</h2>
-                </div>
-                <div class="modal-body">
-                    {{include('session/new.html.twig')}}
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"> Enregistrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade edit-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h2 class="modal-title" id="myModalLabel">Modifier</h2>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" "></a>Enregistrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 {% endblock %}

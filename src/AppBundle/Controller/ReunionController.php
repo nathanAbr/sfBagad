@@ -20,38 +20,28 @@ class ReunionController extends Controller
      * @Route("/index", name="admin_reunion_index")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $reunions = $em->getRepository('AppBundle:Reunion')->findAll();
 
-        $reunion = new Reunion();
-        $form = $this->createForm('AppBundle\Form\ReunionType', $reunion);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($reunion);
-            $em->flush();
-            return $this->redirectToRoute('admin_index');
-        }
 
         return $this->render('reunion/index.html.twig', array(
             'reunions' => $reunions,
-            'reunion' => $reunion,
-            'form' => $form->createView()
+
         ));
     }
 
     /**
      * Creates a new reunion entity.
      *
-     * @Route("/new", name="admin_new")
+     * @Route("/new", name="admin_reunion_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-       /* $reunion = new Reunion();
+        $reunion = new Reunion();
         $form = $this->createForm('AppBundle\Form\ReunionType', $reunion);
         $form->handleRequest($request);
 
@@ -65,13 +55,13 @@ class ReunionController extends Controller
         return $this->render('reunion/new.html.twig', array(
             'reunion' => $reunion,
             'form' => $form->createView(),
-        ));*/
+        ));
     }
 
     /**
      * Finds and displays a reunion entity.
      *
-     * @Route("/{id}", name="admin_show")
+     * @Route("/{id}", name="admin_reunion_show")
      * @Method("GET")
      */
     public function showAction(Reunion $reunion)
@@ -87,7 +77,7 @@ class ReunionController extends Controller
     /**
      * Displays a form to edit an existing reunion entity.
      *
-     * @Route("/{id}/edit", name="admin_edit")
+     * @Route("/{id}/edit", name="admin_reunion_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Reunion $reunion)
@@ -112,7 +102,7 @@ class ReunionController extends Controller
     /**
      * Deletes a reunion entity.
      *
-     * @Route("/{id}", name="admin_delete")
+     * @Route("/{id}", name="admin_reunion_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Reunion $reunion)
@@ -139,7 +129,7 @@ class ReunionController extends Controller
     private function createDeleteForm(Reunion $reunion)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_delete', array('id' => $reunion->getId())))
+            ->setAction($this->generateUrl('admin_reunion_delete', array('id' => $reunion->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

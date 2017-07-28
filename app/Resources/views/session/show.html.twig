@@ -3,26 +3,59 @@
 {% block content %}
     <h1>Session</h1>
 
-    <table>
+    <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ session.id }}</td>
-            </tr>
+        <tr>
+            <th>Datedebut</th>
+            <td>{% if session.dateDebut %}{{ session.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Datefin</th>
+            <td>{% if session.dateFin %}{{ session.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Ville</th>
+            <td>{{ session.ville }}</td>
+        </tr>
+        <tr>
+            <th>Adresse</th>
+            <td>{{ session.adresse }}</td>
+        </tr>
+        <tr>
+            <th>Cp</th>
+            <td>{{ session.cp }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ session.titre }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ session.description }}</td>
+        </tr>
+        <tr>
+            <th>Visibilite</th>
+            <td>{% if session.visibilite %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Actions</th>
+            <td><ul>
+                    <li>
+                        <a href="{{ path('admin_session_index') }}">Back to the list</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_session_edit', { 'id': session.id }) }}">Edit</a>
+                    </li>
+                    <li>
+                        {{ form_start(delete_form) }}
+                        <input type="submit" value="Delete">
+                        {{ form_end(delete_form) }}
+                    </li>
+                </ul>
+            </td>
+        </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_session_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_session_edit', { 'id': session.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
 {% endblock %}

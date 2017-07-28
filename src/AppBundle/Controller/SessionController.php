@@ -25,22 +25,11 @@ class SessionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $sessions = $em->getRepository('AppBundle:Session')->findAll();
 
-        $session = new Session();
-        $form = $this->createForm('AppBundle\Form\SessionType', $session);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($session);
-            $em->flush();
-
-            return $this->redirectToRoute('admin_session_show', array('id' => $session->getId()));
-        }
 
         return $this->render('session/index.html.twig', array(
             'sessions' => $sessions,
-            'session' => $session,
-            'form' => $form->createView(),
+
         ));
     }
 

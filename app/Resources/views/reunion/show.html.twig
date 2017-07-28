@@ -3,30 +3,65 @@
 {% block content %}
     <h1>Reunion</h1>
 
-    <table>
+    <table class="table table-bordered">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ reunion.id }}</td>
-            </tr>
+        <tr>
+            <th>Datedebut</th>
+            <td>{% if reunion.dateDebut %}{{ reunion.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Datefin</th>
+            <td>{% if reunion.dateFin %}{{ reunion.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Ville</th>
+            <td>{{ reunion.ville }}</td>
+        </tr>
+        <tr>
+            <th>Adresse</th>
+            <td>{{ reunion.adresse }}</td>
+        </tr>
+        <tr>
+            <th>Cp</th>
+            <td>{{ reunion.cp }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ reunion.titre }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ reunion.description }}</td>
+        </tr>
+
             <tr>
                 <th>Libelle</th>
                 <td>{{ reunion.libelle }}</td>
             </tr>
+        <tr>
+            <th>Visibilite</th>
+            <td>{% if reunion.visibilite %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        <tr>
+            <th  >Actions</th>
+            <td><ul>
+                <li>
+                    <a href="{{ path('admin_reunion_index') }}">Back to the list</a>
+                </li>
+                <li>
+                    <a href="{{ path('admin_reunion_edit', { 'id': reunion.id }) }}">Edit</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                </li>
+                </ul>
+            </td>
+        </tr>
+
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_edit', { 'id': reunion.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
 {% endblock %}

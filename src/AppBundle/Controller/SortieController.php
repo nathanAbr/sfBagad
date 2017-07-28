@@ -25,22 +25,11 @@ class SortieController extends Controller
         $em = $this->getDoctrine()->getManager();
         $sorties = $em->getRepository('AppBundle:Sortie')->findAll();
 
-        $sortie = new Sortie();
-        $form = $this->createForm('AppBundle\Form\SortieType', $sortie);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($sortie);
-            $em->flush();
-
-            return $this->redirectToRoute('admin_sortie_show', array('id' => $sortie->getId()));
-        }
 
         return $this->render('sortie/index.html.twig', array(
             'sorties' => $sorties,
-            'sortie' => $sortie,
-            'form' => $form->createView(),
+
         ));
     }
 
