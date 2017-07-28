@@ -1,0 +1,37 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+
+{% block content %}
+    <h1>Article</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ article.titre }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ article.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{% if article.dateCreation %}{{ article.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Visibilite</th>
+                <td>{% if article.visibilite %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Actions</th>
+                    <td>
+                    <a class="btn btn-default" href="{{ path('admin_article_index') }}">Retour à la liste</a>
+                    <a class ="btn btn-default"  href="{{ path('admin_article_edit', { 'id': article.id }) }}">Modifier</a>
+                    <a class="btn btn-default" href="{{ path('admin_article_delete', { 'id': article.id }) }}">Suprimer</a>
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

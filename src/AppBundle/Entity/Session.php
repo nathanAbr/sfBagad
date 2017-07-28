@@ -12,23 +12,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Session extends Evenement
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Instrument", inversedBy="sessions")
      */
     private $instrument;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="professeurs")
+     * @var string
+     *
+     * @ORM\Column(name="professeur", type="string", length=255)
      */
     private $professeur;
 
@@ -38,16 +31,6 @@ class Session extends Evenement
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set instrument
@@ -100,11 +83,11 @@ class Session extends Evenement
     /**
      * Set professeur
      *
-     * @param \AppBundle\Entity\Utilisateur $professeur
+     * @param String $professeur
      *
      * @return Session
      */
-    public function setProfesseur(\AppBundle\Entity\Utilisateur $professeur = null)
+    public function setProfesseur($professeur)
     {
         $this->professeur = $professeur;
 
@@ -114,7 +97,7 @@ class Session extends Evenement
     /**
      * Get professeur
      *
-     * @return \AppBundle\Entity\Utilisateur
+     * @return String
      */
     public function getProfesseur()
     {

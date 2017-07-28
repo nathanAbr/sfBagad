@@ -1,0 +1,66 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+    <h1>Evenement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evenement.id }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{% if evenement.dateDebut %}{{ evenement.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{% if evenement.dateFin %}{{ evenement.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ evenement.ville }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ evenement.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Cp</th>
+                <td>{{ evenement.cp }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ evenement.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ evenement.description }}</td>
+            </tr>
+            <tr>
+                <th>Visibilite</th>
+                <td>{% if evenement.visibilite %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Actions</th>
+                <td> <ul>
+                        <li>
+                            <a href="{{ path('admin_evenement_index') }}">Back to the list</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_evenement_edit', { 'id': evenement.id }) }}">Edit</a>
+                        </li>
+                        <li>
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                        </li>
+                    </ul>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

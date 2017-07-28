@@ -1,0 +1,64 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+    <h1>Sessions</h1>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="input-group" >
+
+                <a class="btn btn-white btn-default btn-lg active" href="{{ path('admin_session_new')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+
+            </div>
+        </div>
+    <div class="panel-body">
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th class="text-center">Titre</th>
+                <th class="text-center">Datedebut</th>
+                <th class="text-center">Datefin</th>
+                <th>Ville</th>
+                <th>Adresse</th>
+                <th>Description</th>
+                <th>Instrument</th>
+                <th>Professeur</th>
+                {#
+                <th>Cp</th>
+                <th>Visibilite</th> #}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for session in sessions %}
+            <tr>
+                <td>{{ session.titre }}</td>
+                <td>{% if session.dateDebut %}{{ session.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if session.dateFin %}{{ session.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ session.ville }}</td>
+                <td>{{ session.adresse }}</td>
+                <td>{{ session.description }}</td>
+                <td>{{ session.instrument.libelle }}</td>
+                <td>{{ session.professeur }}</td>
+                {#  <td>{{ session.cp }}</td>
+                <td>{% if session.visibilite %}Yes{% else %}No{% endif %}</td>
+                <td>{{ reunion.libelle }}</td>
+               #}
+                <td>
+                    <div class="input-group-btn">
+
+                        <a class="btn btn-white btn-default  " href="{{ path('membre_session_show', { 'id': session.id })}}">Afficher</a>
+                        <a class="btn btn-white btn-default  " href="{{ path('admin_session_edit', { 'id': session.id })}}">Modifier</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+
+
+{% endblock %}

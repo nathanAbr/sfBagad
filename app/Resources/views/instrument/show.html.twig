@@ -1,0 +1,32 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+    <h1>Instrument</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ instrument.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ instrument.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('membre_instrument_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_instrument_edit', { 'id': instrument.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+    <h1>Nouvelle Sortie</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('membre_sortie_index') }}">Liste des sorties</a>
+        </li>
+    </ul>
+{% endblock %}

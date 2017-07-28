@@ -9,13 +9,19 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Evenement;
+use AppBundle\Entity\Resultat;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Concours;
 use AppBundle\Entity\Reunion;
 use AppBundle\Entity\Session;
 use AppBundle\Entity\Sortie;
+
+use AppBundle\Type\ContactType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use AppBundle\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,16 +35,12 @@ class PublicController extends Controller
     public function indexAction(Request $request, EntityManagerInterface $entityManager)
     {
         $evenementsImp = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true, 'important'=>true), null, 3);
-        $evenementsVis = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true), array('dateAjout'=>'DESC'), 2);
-        $sessionRepetition = $entityManager->getRepository(Session::class)->findByTypeAndAjout('Repetion');
-        $sessionCours = $entityManager->getRepository(Session::class)->findByTypeAndAjout('Cours');
-
-        $evenementsVis['Repetition'] = $sessionRepetition;
-        $evenementsVis['Cours'] = $sessionCours;
+        $evenementsVis = $entityManager->getRepository(Evenement::class)->findBy(array('visibilite'=>true, 'important'=>false), array('dateAjout'=>'DESC'), 2);
+        $palmares = $entityManager->getRepository(Resultat::class)->findOneByVisibilite(true, null, 1);
 
         dump($evenementsVis);
 
-        return $this->render('public/accueil.html.twig', array('evenementsImportants'=>$evenementsImp, 'evenementsAutres'=>$evenementsVis));
+        return $this->render('public/accueil.html.twig', array('evenementsImportants'=>$evenementsImp, 'evenementsAutres'=>$evenementsVis, 'Palmares'=>$palmares));
     }
 
     /**
@@ -52,10 +54,22 @@ class PublicController extends Controller
     /**
      * @Route("/palmares", name="palmares")
      */
-    public function palmaresAction(Request $request)
+    public function palmaresAction(Request $request, EntityManagerInterface $entityManager)
     {
-        // replace this example code with whatever you need
-        return $this->render('public/palmares.html.twig');
+        $palmares = $entityManager->getRepository(Resultat::class)->findByVisibilite(true);
+
+        return $this->render('public/palmares.html.twig', array("listPalmares"=>$palmares));
+    }
+
+    /**
+     * @Route("/dataPalmares", name="OncePalmares")
+     */
+    public function dataPalmaresAction(Request $request, EntityManagerInterface $entityManager){
+        $palmares = $entityManager->getRepository(Resultat::class)->findOneById($_POST['id']);
+        $object = new \stdClass();
+        $object->titre = $palmares->getTitre();
+        $object->description = $palmares->getDescription();
+        return new Response(json_encode($object));
     }
     
 

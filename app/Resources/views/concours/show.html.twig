@@ -1,0 +1,51 @@
+{% extends 'espaceMembres/layout.html.twig' %}
+
+{% block content %}
+    <h1>Concours</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ concours.titre }}</td>
+            </tr>
+            <tr>
+                <th>Date Debut</th>
+                <td>{% if concours.dateDebut %}{{ concours.dateDebut|date('d-m-Y H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date Fin</th>
+                <td>{% if concours.dateFin %}{{ concours.dateFin|date('d-m-Y H:i:s') }}{% endif %}</td>
+
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ concours.adresse}} {{ concours.cp}} {{ concours.ville}}</td>
+
+            </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ concours.description }}</td>
+
+
+        </tr>
+
+        </tbody>
+    </table>
+    <div>
+
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('membre_concours_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_concours_edit', { 'id': concours.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,5 +1,7 @@
 {% extends 'espaceMembres/layout.html.twig' %}
-
+{% block title %}
+    Concours
+{% endblock %}
 {% block content %}
 
 
@@ -12,44 +14,38 @@
         <div class="panel-heading">
             <div class="input-group" >
                 <h3>Concours d'été</h3>
-
-                <div class="input-group-btn" style="padding-right: 250px">
-
-                    <button type="button" class="btn btn-default"><a href=" {{ path('em_concours_sup') }}"></a>Supprimer</button>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".edit-example-modal-lg">Modifier</button>
-                </div>
-                <div class="input-group-btn">
-
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Détail</button>
-
-                </div>
-            </div>
         </div>
 
         <div class="panel-body">
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Libelle</th>
                     <th>Date</th>
-                    <th>Heure</th>
                     <th>Lieu</th>
-                    <th>Programme musical</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>20 aout 2017</td>
-                    <td>10h30</td>
-                    <td>Quimperlé</td>
-                    <td>partition1, partition2, etc...</td>
-                </tr>
+                {% for concour in concours %}
+                    <tr>
+                        <td><a href="{{ path('membre_concours_show', { 'id': concour.id}) }}">{{ concour.titre }}</a></td>
+                        <td>{% if concour.dateDebut %}{{ concour.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ concour.adresse }}{{ concour.cp }}{{ concour.ville }}</td>
+                        <td>
+                            <div class="input-group-btn">
+                                <a class="btn btn-white btn-default  " href="{{ path('membre_concours_show', { 'id': concour.id })}}">Afficher</a>
+                                <a class="btn btn-white btn-default  " href="{{ path('admin_concours_edit', { 'id':concour.id })}}">Modifier</a>
+                                <a class="btn btn-white btn-default  " href="{{ path('membre_concours_show', { 'id':concour.id })}}">Supprimer</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
     {#{% endfor %} #}
-
-
 
 
     <div class="modal fade add-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -60,31 +56,16 @@
                     <h4 class="modal-title" id="myModalLabel">Ajouter un concours</h4>
                 </div>
                 <div class="modal-body">
-
+                    {{ form_start(form, {'attr': {'id': 'formconcours', 'action': path('admin_concours_new'), 'method': 'POST'}}) }}
+                    {{ form_widget(form)}}
+                    {{ form_end(form) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_concours_add') }}"></a> Enregistrer</button>
+                    <button type="submit" class="btn btn-primary" form="formconcours"><a href=" {{ path('admin_concours_new') }}"></a> Enregistrer</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade edit-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modifier</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary"><a href=" {{ path('em_concours_edit') }}"></a> Enregistrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}

@@ -40,7 +40,7 @@ class Evenement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_ajout", type="datetime")
+     * @ORM\Column(name="date_ajout", type="datetime", options={"default"=0})
      */
     private $dateAjout;
 
@@ -223,6 +223,8 @@ class Evenement
     {
         $this->utilisateurEvenements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->partitions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateAjout = new \DateTime();
+
     }
 
     /**

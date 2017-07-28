@@ -12,14 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reunion extends Evenement
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @var string
@@ -27,16 +19,6 @@ class Reunion extends Evenement
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
-    
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set libelle

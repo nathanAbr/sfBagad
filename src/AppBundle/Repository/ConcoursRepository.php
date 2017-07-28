@@ -21,7 +21,4 @@ class ConcoursRepository extends \Doctrine\ORM\EntityRepository
         }
     }
 
-    public function findByImportance(){
-
-    }
 }

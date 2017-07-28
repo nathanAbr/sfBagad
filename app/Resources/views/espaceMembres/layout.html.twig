@@ -1,13 +1,12 @@
-
 {% extends 'base.html.twig' %}
 {% block body %}
     {% block header %}
         <nav class="navbar navbar-default">
             <div class="collapse navbar-collapse">
+
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ path('em_messagerie') }}" class="link-nav-right">MESSAGERIE <span class="badge">4</span></a></li>
-                    <li><a href="{{ path('fos_user_profile_show') }}" class="link-nav-right">Mon Profil</a></li>
-                    <li><a href="{{ path('fos_user_security_logout') }}" class="link-nav-right">Déconnexion</a></li>
+                    <li><a href="{{ path('admin_contact_index') }}" class="link-nav-right">MESSAGERIE <span class="badge">4</span></a></li>
+                    <li><a href="{{ path('em_profil') }}" class="link-nav-right">Mon Profil</a></li>
                 </ul>
             </div>
         </nav>
@@ -21,31 +20,35 @@
                     <img src="http://i2.wp.com/www.laita-prod.com/wp-content/uploads/2015/10/bagad03.jpg?resize=333%2C200" height="200px" width="400px" style="margin-left: -20px;  margin-top: -50px"/>
                 </a>
 
+
                 <ul class="list-group nav nav-sidebar">
                     <li class="list-group-item justify-content-between">
-                        <a href="{{ path('em_accueil') }}">AGENDA<span class="badge">1</span></a>
+                        <a href="{{ path('membre_accueil') }}">AGENDA<span class="badge">1</span></a>
 
                     </li>
                     <li class="list-group-item justify-content-between">
-                        <a href="{{ path('em_sortie') }}">SORTIE<span class="badge">1</span></a>
+                        <a href="{{ path('membre_sortie_index') }}">SORTIES<span class="badge">1</span></a>
 
                     </li>
                     <li class="list-group-item justify-content-between">
-                        <a href="{{ path('em_concours') }}">CONCOURS<span class="badge">0</span></a>
+                        <a href="{{ path('membre_concours_index') }}">CONCOURS<span class="badge">0</span></a>
 
                     </li>
                     <li class="list-group-item justify-content-between">
-                        <a href="{{ path('em_repetition') }}">REPETITIONS/STAGES<span class="badge">5</span></a>
+                        <a href="{{ path('membre_session_index') }}">REPETITIONS/STAGES<span class="badge">5</span></a>
 
                     </li>
                     <li class="list-group-item justify-content-between">
-                        <a href="{{ path('em_reunion') }}">REUNIONS<span class="badge">5</span></a>
+                        <a href="{{ path('membre_reunion_index') }}">REUNIONS<span class="badge">5</span></a>
 
                     </li>
                     <li class="list-group-item justify-content-between">
                         <a href="{{ path('em_listeMembres') }}">LISTE DES MEMBRES<span class="badge">5</span></a>
+
                     </li>
                 </ul>
+
+
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
                 {% block content %}
@@ -54,4 +57,3 @@
         </div>
     </div>
 {% endblock %}
-
